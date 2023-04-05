@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root{
+    --cinza-claro-padrao: #5C5C5C;
+    --cinza-escuro-padrao: #262626;
+    --amarelo-padrao: #FFE600;
+    --laranja-padrao: #FF7A00;
+    --laranja-claro-padrao: #FFA200;
+    --cinza-detalhe: #AAAAAA;
+    --cinza-header: #d9d9d9;
+    --sombra-clara: 0 5px 15px rgba(235, 223, 223, 0.1);
+}
+
+.sticky-pos {
+    width: 100vw;
+    position: sticky;
+    top:0;
+}
+
+.text-gradient {
+    background-image: linear-gradient(to right, var(--amarelo-padrao), var(--laranja-padrao));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.text-gradient:hover{
+    background-image: linear-gradient(to right, var(--amarelo-padrao), var(--laranja-padrao));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+*{
+    font-family: 'Exo 2', sans-serif;
+}

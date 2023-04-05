@@ -1,0 +1,101 @@
+html{
+    overflow-x: hidden;
+}
+
+.submit-wrapper{
+    display: flex;
+}
+
+.perfilPrincipal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.perfilContainer{
+    display: flex;
+    flex-direction: column;
+
+    width: 70vw;
+    height: max-content;
+
+    margin-top: 20px;
+    padding: 25px;
+
+    background-color: var(--cinza-header);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 11px;
+}
+
+.dadosContainer,.enderecoContainer{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.dadosContainer h1, .enderecoContainer h1{
+    margin-bottom: 20px;
+}
+
+.inputsContainer{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 10px;
+    
+}
+
+
+input{
+    height: 50px;
+    width: 30vw;
+    padding-left: 16px; 
+    margin-bottom: 24px;
+    margin-right: 24px;
+    background-color: #ffffffa2;
+    border: 2px solid #FFFFFF;
+    border-radius: 8px;
+    outline: none;
+    
+}
+
+input:read-only{
+    height: 50px;
+    width: 30vw;
+    padding-left: 16px; 
+    margin-bottom: 24px;
+    margin-right: 24px;
+    color: #0000007a;
+    background-color: #c0c0c0;
+    border: 2px solid #FFFFFF;
+    border-radius: 8px;
+    outline: none;
+}
+
+.labelContainer{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.labelContainer label{
+    font-size: 20px;
+    margin-bottom: 5px;
+    color: var(--cinza-claro-padrao);
+}
+
+@media only screen and (max-width: 768px){
+    .inputsContainer input{
+        width: 70vw;
+    }
+    .inputsContainer{
+        margin-left: 20px;
+        margin-right: 0;
+        justify-content: center;  
+    }
+    .perfilContainer{
+        width: 70vw;
+    }
+}

@@ -1,0 +1,206 @@
+
+
+.homeFundo{
+    background: linear-gradient(var(--cinza-claro-padrao), var(--cinza-escuro-padrao));
+    display: flex;
+    position: fixed;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%; 
+    font-family: 'Exo 2';
+}
+
+.homePrincipal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.homeTitulo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 17px;
+}
+
+.homeTitulo h1{
+    background-image: linear-gradient(to right, var(--amarelo-padrao), var(--laranja-padrao));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 48px;
+    font-weight: bold;
+}
+
+    .homeTitulo img{
+        width: 80px;
+        height: 80px;
+        animation: flipBurguer 1.5s;
+    }
+    
+    @keyframes flipBurguer {
+        0% {
+            transform: rotateY(0deg);
+        }
+        50% {
+            transform: rotateY(180deg);
+        }
+        100% {
+            transform: rotateY(360deg);
+        }
+    }
+
+    .homeBox{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background-color: var(--cinza-escuro-padrao);
+        border-radius: 11px;
+        margin-top: 30px;
+        width: 640px;
+        height: 550px;
+        box-shadow: var(--sombra-clara);
+    }
+
+    
+    
+    .homeLema{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        margin-top: 35px;
+    }
+    
+    .homeLema span{
+        background-image: linear-gradient(to right, var(--amarelo-padrao), var(--laranja-padrao));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 24px;
+        font-weight: bold;
+    }
+    
+    .textoHome{
+        display: flex;
+        text-align: center;
+        margin-top: 35px;
+    }
+    
+    .textoHome p{
+        background-image: linear-gradient(to right, var(--amarelo-padrao), var(--laranja-padrao));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+
+.homeBotao{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 35px;
+}
+
+.homeBotao button{
+    width: 525px;
+    height: 85px;
+    background: linear-gradient(90deg, #FFE600 0%, #FF7A00 100%);
+    border-radius: 8px;
+    margin: 0px 25px 0px 25px;
+    color: #1E1E1E;
+    border: 0;
+    font-size: 20px;
+    transition-duration: 0.4s;
+    margin-bottom: 35px;
+}
+
+button:hover{
+    background: var(--cinza-detalhe);
+    cursor: pointer;
+}
+
+
+
+@media only screen and (max-width: 700px){
+    
+    .homeBox{
+        width: 540px;
+    }
+
+    .homeBotao button{
+        width: 400px;
+        height: 80px;
+        background: linear-gradient(90deg, #FFE600 0%, #FF7A00 100%);
+        border-radius: 8px;
+        margin: 0px 25px 0px 25px;
+        color: #1E1E1E;
+        border: 0;
+        font-size: 20px;
+        transition-duration: 0.4s;
+        margin-bottom: 20px;
+    }
+}
+
+@media only screen and (max-width: 580px){
+    
+    .homeBox{
+        width: 440px;
+    }
+
+    .homeLema span{
+        font-size: 20px;
+    }
+
+    .textoHome p{
+        font-size: 20px;
+    }
+
+    .homeBotao button{
+        width: 300px;
+        height: 80px;
+        background: linear-gradient(90deg, #FFE600 0%, #FF7A00 100%);
+        border-radius: 8px;
+        margin: 0px 25px 0px 25px;
+        color: #1E1E1E;
+        border: 0;
+        font-size: 20px;
+        transition-duration: 0.4s;
+        margin-bottom: 20px;
+    }
+}
+
+@media only screen and (max-width: 460px){
+    .homeBox{
+        width: 340px;
+    }
+
+    .homeLema span{
+        font-size: 16px;
+    }
+
+    .textoHome p{
+        font-size: 16px;
+    }
+
+    .homeBotao button{
+        width: 250px;
+        height: 80px;
+        background: linear-gradient(90deg, #FFE600 0%, #FF7A00 100%);
+        border-radius: 8px;
+        margin: 0px 25px 0px 25px;
+        color: #1E1E1E;
+        border: 0;
+        font-size: 20px;
+        transition-duration: 0.4s;
+        margin-bottom: 20px;
+    }
+}
+
+@media only screen and (max-height: 680px){
+    .homeBox{
+        height: 500px;
+    }
+}

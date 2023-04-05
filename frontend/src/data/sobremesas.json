@@ -1,0 +1,15 @@
+{
+    "tipo":"Sobremesas",
+    "list":[
+        {
+            "nome": "Pudim",
+            "preco": "R$ 7,00",
+            "tipo":"item"
+        },
+        {
+            "nome": "Brownie",
+            "preco": "R$ 7,00",
+            "tipo":"item"
+        }
+    ]
+}

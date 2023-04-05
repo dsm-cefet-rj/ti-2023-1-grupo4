@@ -1,0 +1,169 @@
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+
+}
+
+h2 {
+  text-align: center;
+  font-size: 3vh;
+}
+
+.cart-container {
+  border: none;
+  background-color: var(--cinza-header);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 11px;
+  padding: 20px;
+  margin-bottom: 40px;
+   
+}
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  
+}
+
+.clear-button {
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.clear-button:hover {
+  background-color: #e53935;
+}
+
+.cart-items{
+    padding: 5px;
+    background-color: white;
+    border-radius: 11px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.cart-item:last-child {
+  border-bottom: none;
+}
+
+.cart-item p:first-child {
+  font-weight: bold;
+}
+
+.cart-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.update-button {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.update-button:hover {
+  background-color: #388e3c;
+}
+
+.payment-container {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 40px;
+}
+
+.payment-options {
+  display: flex;
+  flex-direction: column;
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.payment-option input[type="radio"] {
+  margin-right: 10px;
+}
+
+.buttonContainer{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.confirm-button {
+  background-color: #2196f3;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.confirm-button:hover {
+  background-color: #1976d2;
+}
+
+.payInput{
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.payInput label{
+  color: #000000;
+  margin-bottom: 10px;
+}
+
+.payInput input{
+  margin-bottom: 15px;
+  width: 400px;
+  height: 40px;
+  color: #000000;  
+  padding-left: 16px;
+  border-radius: 8px;
+  background-color: transparent;
+  border: solid 1px;
+  outline: none;
+}
+
+.payInput select{
+  margin-bottom: 15px;
+  width: 320px;
+  height: 40px;
+  color: #000000;
+  padding-left: 16px;
+  border-radius: 8px;
+  background-color: transparent;
+  border: solid 1px;
+  outline: none;
+  margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 410px){
+    .payInput select{
+        width: 270px;
+    }
+}

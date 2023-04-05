@@ -1,0 +1,20 @@
+{
+    "tipo":"Bebidas",
+    "list":[
+        {
+            "nome": "Coca-cola",
+            "preco": "R$ 5,00",
+            "tipo":"item"
+        },
+        {
+            "nome": "Mate leão",
+            "preco": "R$ 5,00",
+            "tipo":"item"
+        },
+        {
+            "nome": "Guaraná",
+            "preco": "R$ 3,00",
+            "tipo":"item"
+        }
+    ]
+}
