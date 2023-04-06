@@ -22,7 +22,7 @@ export default function Cabecalho(){
                         <Link to={"/perfil"} className='menu-item'>
                             <button className='menu-btn text-gradient'>Meu Perfil</button>
                         </Link>
-                        <Link to={"/pedido"} className='menu-item'>
+                        <Link to={"/statuspedido"} className='menu-item'>
                             <button className='menu-btn text-gradient'>Status do Pedido</button>
                         </Link>
                         <Link to={"/"}>
@@ -44,7 +44,7 @@ export default function Cabecalho(){
                 <Link to={"/perfil"} className='menu-item'>
                     <button className='menu-btn-mobile text-gradient'>Meu Perfil</button>
                 </Link>
-                <Link to={"/pedido"} className='menu-item'>
+                <Link to={"/statuspedido"} className='menu-item'>
                     <button className='menu-btn-mobile text-gradient'>Status do Pedido</button>
                 </Link>
                 <Link to={"/"} className='menu-item'>

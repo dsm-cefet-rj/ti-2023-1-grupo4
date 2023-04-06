@@ -6,6 +6,7 @@ import Cardapio from './pages/cardapio'
 import Endereco from './pages/endereco'
 import Perfil from './pages/perfil'
 import Carrinho from './pages/carrinho'
+import StatusPedido from './pages/statuspedido'
 
 export default function AppRouter(){
 
@@ -19,6 +20,7 @@ export default function AppRouter(){
                 <Route path='/cardapio' element={<Cardapio/>}/>
                 <Route path='/perfil' element={<Perfil/>}/>
                 <Route path='/carrinho' element={<Carrinho/>}/>
+                <Route path='/statuspedido' element={<StatusPedido/>}/>
             </Routes>
         </Router>
     )
