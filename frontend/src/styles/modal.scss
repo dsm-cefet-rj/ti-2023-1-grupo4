@@ -1,0 +1,42 @@
+.Container{
+    display: flex;
+    justify-content: center;
+    margin-top: 20%;
+}
+
+.modal-overlay{
+    background: var(--cinza-claro-padrao);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: max-content;
+    background-color: var(--cinza-header);
+    border-radius: 11px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+button{
+    padding: 5px;
+    font-size: large;
+    float: right;
+    cursor: pointer;
+}
+
+.logoModal{
+    width: 50px;
+    height: 50px;
+}
