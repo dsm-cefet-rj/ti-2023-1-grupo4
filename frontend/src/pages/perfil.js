@@ -44,7 +44,7 @@ export default function perfil() {
               </div>
               <div className='enderecoContainer'>
                 <h1>Endereço</h1> 
-                <div className='inputsContainer'>
+                <div className='inputsContainerTwo'>
                     <InputField 
                       label={"CEP"}
                       value={"26410-280"}
@@ -63,12 +63,21 @@ export default function perfil() {
                       type={"text"}
                       editable={edit}
                     />
-                    <InputField 
-                      label={"Número e Complemento"}
-                      value={"55, Casa"}
+                    <div className='complementoBox'>
+                      <InputField 
+                      label={"Número"}
+                      value={"55"}
                       type={"text"}
                       editable={edit}
-                    />
+                      />
+                      <InputField 
+                        label={"Complemento"}
+                        value={"Casa"}
+                        type={"text"}
+                        editable={edit}
+                      />
+                    </div>
+                    
                     <InputField 
                       label={"Cidade"}
                       value={"Japeri"}
@@ -86,11 +95,11 @@ export default function perfil() {
               {
                 !edit
                 ? <div id='submit-wrapper'>
-                    <Button texto='Editar perfil' onClick={() => setEdit(!edit)}/>
+                    <button className='buttonStyle' onClick={() => setEdit(!edit)}>Editar perfil</button>
                   </div>
                 : <div id='submit-wrapper'>
-                    <Button texto='Cancelar' onClick={() => setEdit(!edit)}/>
-                    <Button texto='Salvar' onClick={() => setEdit(!edit)}/>
+                    <button className='buttonStyleTwo' onClick={() => setEdit(!edit)}>Cancelar</button>
+                    <button className='buttonStyleTwo' onClick={() => setEdit(!edit)}>Salvar</button>
                   </div>
               }
                 

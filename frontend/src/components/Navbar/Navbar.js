@@ -13,7 +13,7 @@ export default function Navbar(){
 
     function scrollToComponent(id){
         let pos = Position(document.getElementById(id))
-        window.scrollTo(0, pos-168)
+        window.scrollTo(0, pos-320)
         console.log(pos)
     }
 

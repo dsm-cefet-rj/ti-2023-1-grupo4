@@ -60,9 +60,15 @@ export default function Endereco(){
                                     <label>Bairro</label>
                                     <Field name='bairro' type="text" placeholder="Digite seu bairro"/>
                                 </div>
-                                <div className='enderecoInputs'>
-                                    <label>Número e complemeto</label>
-                                    <Field name='numero' type="text" placeholder="Digite o numero e o complemento"/>
+                                <div className='complementoContainer'>
+                                    <div className='complementoInputs'>
+                                    <label>Número</label>
+                                    <Field name='numero' type="text" placeholder="Digite o numero"/>
+                                    </div>
+                                    <div className='complementoInputs'>
+                                        <label>Complemeto</label>
+                                        <Field name='numero' type="text" placeholder="Digite o complemento"/>
+                                    </div>
                                 </div>
                                 <div className='enderecoInputs'>
                                     <label>Cidade</label>
