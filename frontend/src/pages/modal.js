@@ -7,7 +7,7 @@ import { useState } from 'react'
 import Modal from "react-modal"
 
 Modal.setAppElement("#root");
-
+// acho q a gnt pode deletar essa tela, eu já coloquei os botoes na tela Item
 
 export default function modal() {
 

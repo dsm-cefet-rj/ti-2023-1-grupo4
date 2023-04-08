@@ -1,8 +1,13 @@
-import './item.scss'
-import { Link } from 'react-router-dom'
-import { useState } from 'react'
-import Modal from 'react-modal'
-import { useRecoilState } from 'recoil'
+import './item.scss';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import Modal from 'react-modal';
+import logo from '../../assets/images/logo.png';
+import { useRecoilState } from 'recoil';
+import '../../styles/modal.scss';
+import Button from '../../components/Botao/button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 Modal.setAppElement("#root");
 
@@ -33,6 +38,7 @@ export default function ItemBox(props){
                             )
                         }
                     </li>
+                    
                 </ul>
             </div>
         </div>
@@ -40,7 +46,17 @@ export default function ItemBox(props){
 }
 
 function Item(props){
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+    function openModal(){
+        setIsOpen(true);
+    }
+
+    function closeModal(){
+        setIsOpen(false);
+    }
   return(
+    
     <div className='comboItensBox'>
       <ul>
           <li>
@@ -51,11 +67,49 @@ function Item(props){
             </a>
           </li>
       </ul>
+      <div className='Container'>
+              <button onClick={openModal} className='abrirModal'>Adicionar</button>
+              <Modal
+              isOpen={modalIsOpen}
+              onRequestClose={closeModal}
+              contentLabel="Example Modal"
+              overlayClassName="modal-overlay"
+              className="modal-content"
+              > 
+                <div className='modal-topo'>
+                  <button onClick={closeModal} className='btn-voltar'> 
+                      <FontAwesomeIcon icon={faArrowLeft} />
+                    </button>
+                    <h2>Combo 1</h2>
+                </div>
+                <div className='modal-itens'>
+                  <div className='modal-descricao'> 
+                    {/* essa aqui fica na esquerda, com flex-direction column */}
+                    <p>Descrição</p>
+                    <p>preço</p>
+                  </div>
+                  <div className='modal-img'>
+                      {/* essa aqui fica na direita, só com a img */}
+                    <img src={logo} alt="logo" className='logoModal'/>
+                  </div>
+                </div>
+                <Button texto="Adicionar" className='modal-add'/>
+              </Modal>
+            </div>
     </div>
   )
 }
 
 function Combo(props){
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+    function openModal(){
+        setIsOpen(true);
+    }
+
+    function closeModal(){
+        setIsOpen(false);
+    }
     return(
         <div className='comboItensBox'>
             <ul>
@@ -69,6 +123,39 @@ function Combo(props){
                   </a>
                 </li>
             </ul>
+            <div className='Container'>
+              <button onClick={openModal} className='abrirModal'>Adicionar</button>
+              <Modal
+              isOpen={modalIsOpen}
+              onRequestClose={closeModal}
+              contentLabel="Example Modal"
+              overlayClassName="modal-overlay"
+              className="modal-content"
+              > 
+                <div className='modal-topo'>
+                  <button onClick={closeModal} className='btn-voltar'> 
+                      <FontAwesomeIcon icon={faArrowLeft} />
+                    </button>
+                    <h2>Combo 1</h2>
+                </div>
+                <div className='modal-itens'>
+                  <div className='modal-descricao'> 
+                    {/* essa aqui fica na esquerda, com flex-direction column */}
+                    <p>Descrição</p>
+                    <p>preço</p>
+                  </div>
+                  <div className='modal-img'>
+                      {/* essa aqui fica na direita, só com a img */}
+                    <img src={logo} alt="logo" className='logoModal'/>
+                  </div>
+                </div>
+                
+                <div className='modal-add'>
+                  <Button texto="Adicionar"/>
+                </div>
+                {/* <button onClick={closeModal}> Voltar </button> */}
+              </Modal>
+            </div>
         </div>
     )
 }
