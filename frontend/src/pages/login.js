@@ -1,11 +1,52 @@
 import '../styles/login.scss';
 import Button from '../components/Botao/button';
 import logo from '../assets/images/logo.png';
-import React from 'react';
+import React, { useState} from 'react';
 import { Link } from 'react-router-dom';
 //import { useHistory } from "react-router-dom";
 
 export default function Login(){
+
+    
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  function handleEmailChange(event) {
+    setEmail(event.target.value);
+  }
+
+  function handlePasswordChange(event) {
+    setPassword(event.target.value);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    if (!email || !password) {
+      alert("Por favor, preencha o email e a senha.");
+      return;
+    } else {
+      let users = localStorage.getItem('fast_byte_usuarios');
+      if(!!users){
+        users = JSON.parse(users);
+      }else{
+        alert("Email ou senha incorretos.");
+        return;
+      }
+
+      let hasUser = users['usuarios'].find(v => {
+        return (v.email === email && v.password === password)
+      });
+
+      if(!!hasUser){
+        sessionStorage.setItem('fast_byte_token', JSON.stringify({email:hasUser.email, tipo:hasUser.tipo, userName:hasUser.userName}));
+      }else{
+        alert("Email ou senha incorretos.");
+        return;
+      }
+      window.location.href = '/cardapio'
+    }
+  }
 
     return(
         <div className="loginFundo">
@@ -22,18 +63,16 @@ export default function Login(){
                     <div className="textoLogin">
                         <p>Faça seu login</p>
                     </div>
-                    <div className="loginInputs">
-                        <input type='email' placeholder="Digite seu email"/>
-                        <input type='password' placeholder="Digite sua senha"/>
-                    </div>
-                    <div className="loginBotao">
-                        <Link to='/cadastro'>
-                            <Button texto= "Cadastre-se"></Button> 
-                        </Link>
-                        <Link to='/cardapio'>
-                            <Button texto= "Entrar"></Button> 
-                        </Link>
-                    </div>
+                    <form onSubmit={handleSubmit} className='loginInputContainer'>
+                        <input type="email" value={email} onChange={handleEmailChange} placeholder='Digite seu Email...'/>
+                        <input type="password" value={password} onChange={handlePasswordChange} placeholder='Digite sua senha...'/>
+                        <div>
+                          <Button type="submit" texto='Entrar'/>
+                          <Link to='/cadastro'>
+                            <Button texto='Cadastre-se'/>
+                          </Link>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

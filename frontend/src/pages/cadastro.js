@@ -1,11 +1,42 @@
 import '../styles/cadastro.scss'
 import Button from '../components/Botao/button';
 import logo from '../assets/images/logo.png';
-import React from 'react';
+import React, { useState } from 'react';
+import { useRecoilState } from 'recoil'
 import { Link } from 'react-router-dom';
+import { CadastroAtom } from '../states/cadastro';
 
 
 export default function Cadastro(){
+
+  const [cadastroForm, setCadastroForm] = useRecoilState(CadastroAtom);
+
+  function setCadastroField(campo, event){
+    let tempForm = {...cadastroForm}
+    tempForm[campo] = event.target.value;
+    setCadastroForm(tempForm);
+  }
+
+  
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    if (!cadastroForm.email || !cadastroForm.password || !cadastroForm.userName || !cadastroForm.confirmPassword) {
+      alert("Por favor, preencha os campos obrigatórios");
+      return;
+    } else {
+
+      if(cadastroForm.password !== cadastroForm.confirmPassword){
+        alert("As senhas não conferem!");
+        return;
+      }
+      
+      sessionStorage.setItem("cadastroBuffer", JSON.stringify(cadastroForm));
+
+      window.location.href = '/endereco'
+    }
+  }
 
     return(
         <div className="cadastroFundo">
@@ -18,20 +49,20 @@ export default function Cadastro(){
                     <div className="textoCadastro">
                         <p>Faça seu cadastro</p>
                     </div>
-                    <div className="cadastroInputs">
-                        <input type='text' placeholder="Digite seu nome de usuário"/>
-                        <input type='email' placeholder="Digite seu email"/>
-                        <input type='password' placeholder="Digite sua senha"/>
-                        <input type='password' placeholder="Confirme sua senha"/>
-                    </div>
-                    <div className="cadastroBotao">
+                    <form onSubmit={handleSubmit} className="cadastroInputs">
+                        <input type='text' placeholder="Digite seu nome de usuário" value={cadastroForm.userName} onChange={(e) => setCadastroField("userName", e)}/>
+                        <input type='email' placeholder="Digite seu email" value={cadastroForm.email} onChange={(e) => setCadastroField("email", e)}/>
+                        <input type='password' placeholder="Digite sua senha" value={cadastroForm.password} onChange={(e) => setCadastroField("password", e)}/>
+                        <input type='password' placeholder="Confirme sua senha" value={cadastroForm.confirmPassword} onChange={(e) => setCadastroField("confirmPassword", e)}/>
+                        
+                        <div>
+                          <Button type="submit" texto= "Cadastrar"/>
                         <Link to='/login'>
                             <Button texto= "Cancelar"/>
                         </Link>
-                        <Link to='/endereco'>
-                            <Button texto= "Cadastrar"/>
-                        </Link>
-                    </div>
+                        </div>
+                        
+                    </form>
                 </div>
             </div>
         </div>

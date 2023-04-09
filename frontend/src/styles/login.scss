@@ -32,12 +32,13 @@
     font-weight: bold;
 }
 
-    .loginTitulo img{
-        width: 80px;
-        height: 80px;
-        animation: flipBurguer 1.5s;
-    }
-    
+.loginTitulo img{
+    width: 80px;
+    height: 80px;
+    animation: flipBurguer 1.5s;
+}
+
+
     @keyframes flipBurguer {
         0% {
             transform: rotateY(0deg);
@@ -93,14 +94,16 @@
         font-weight: bold;
     }
 
-
-.loginInputs{
+.loginInputContainer{
     display: flex;
     flex-direction: column;
-    margin-top: 28px;
+    align-items: center;
+
+    margin-top: 35px;
 }
 
-.loginInputs input{
+.loginInputContainer input{
+
     margin-bottom: 30px;
     width: 400px;
     height: 50px;
@@ -112,11 +115,7 @@
     outline: none;
 }
 
-.loginBotao{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
 
 @media only screen and (max-width: 700px){
     .loginBox{
@@ -137,7 +136,7 @@
         font-size: 20px;
     }
 
-    .loginInputs input{
+    .loginInputContainer input{
         width: 320px;
     }
 }
@@ -155,7 +154,7 @@
         font-size: 16px;
     }
 
-    .loginInputs input{
+    .loginInputContainer input{
         width: 250px;
     }
 }

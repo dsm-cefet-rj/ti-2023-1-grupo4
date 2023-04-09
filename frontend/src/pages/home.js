@@ -27,9 +27,6 @@ export default function Home(){
                         <Link to='/cadastro'>
                             <button>Fazer cadastro</button>
                         </Link>
-                        <Link to='/'>
-                            <button>Sobre o restaurante</button>
-                        </Link>
                     </div>
                 </div>
             </div> 
