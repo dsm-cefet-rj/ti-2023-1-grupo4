@@ -2,7 +2,6 @@
   max-width: 800px;
   margin: 20px auto;
   padding: 20px;
-
 }
 
 h2 {
@@ -17,7 +16,6 @@ h2 {
   border-radius: 11px;
   padding: 20px;
   margin-bottom: 40px;
-   
 }
 
 .cart-header {
@@ -25,7 +23,6 @@ h2 {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-  
 }
 
 .clear-button {
@@ -42,10 +39,10 @@ h2 {
   background-color: #e53935;
 }
 
-.cart-items{
-    padding: 5px;
-    background-color: white;
-    border-radius: 11px;
+.cart-items {
+  padding: 5px;
+  background-color: white;
+  border-radius: 11px;
 }
 
 .cart-item {
@@ -107,9 +104,9 @@ h2 {
   margin-right: 10px;
 }
 
-.buttonContainer{
-    display: flex;
-    justify-content: flex-end;
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .confirm-button {
@@ -126,22 +123,22 @@ h2 {
   background-color: #1976d2;
 }
 
-.payInput{
+.payInput {
   margin-top: 40px;
   display: flex;
   flex-direction: column;
 }
 
-.payInput label{
+.payInput label {
   color: #000000;
   margin-bottom: 10px;
 }
 
-.payInput input{
+.payInput input {
   margin-bottom: 15px;
   width: 400px;
   height: 40px;
-  color: #000000;  
+  color: #000000;
   padding-left: 16px;
   border-radius: 8px;
   background-color: transparent;
@@ -149,7 +146,7 @@ h2 {
   outline: none;
 }
 
-.payInput select{
+.payInput select {
   margin-bottom: 15px;
   width: 320px;
   height: 40px;
@@ -162,8 +159,8 @@ h2 {
   margin-bottom: 20px;
 }
 
-@media only screen and (max-width: 410px){
-    .payInput select{
-        width: 270px;
-    }
+@media only screen and (max-width: 410px) {
+  .payInput select {
+    width: 270px;
+  }
 }

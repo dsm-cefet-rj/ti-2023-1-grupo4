@@ -1,233 +1,232 @@
-html{
-    overflow-x: hidden;
+html {
+  overflow-x: hidden;
 }
 
-.submit-wrapper{
-    display: flex;
+.submit-wrapper {
+  display: flex;
 }
 
-.buttonStyle{
-    width: 12vw;
-    height: 50px;
-    background: linear-gradient(to bottom right, #FFE600 0%, #FF7A00 100%);
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    margin: 0px 10px 0px 10px;
-    color: #1E1E1E;
-    border: 0;
-    font-size: 20px;
-    transition-duration: 0.4s;
+.buttonStyle {
+  width: 12vw;
+  height: 50px;
+  background: linear-gradient(to bottom right, #ffe600 0%, #ff7a00 100%);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  margin: 0px 10px 0px 10px;
+  color: #1e1e1e;
+  border: 0;
+  font-size: 20px;
+  transition-duration: 0.4s;
 }
 
-.buttonStyleTwo{
-    width: 12vw;
-    height: 50px;
-    background: linear-gradient(to bottom right, #FFE600 0%, #FF7A00 100%);
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    margin: 0px 10px 0px 10px;
-    color: #1E1E1E;
-    border: 0;
-    font-size: 20px;
-    transition-duration: 0.4s;
+.buttonStyleTwo {
+  width: 12vw;
+  height: 50px;
+  background: linear-gradient(to bottom right, #ffe600 0%, #ff7a00 100%);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  margin: 0px 10px 0px 10px;
+  color: #1e1e1e;
+  border: 0;
+  font-size: 20px;
+  transition-duration: 0.4s;
 }
 
-.perfilPrincipal{
-    display: flex;
-    justify-content: center;
+.perfilPrincipal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.perfilContainer {
+  display: flex;
+  flex-direction: column;
+
+  width: 70vw;
+  height: max-content;
+
+  margin-top: 60px;
+  padding: 25px;
+
+  background-color: var(--cinza-header);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 11px;
+}
+
+.dadosContainer,
+.enderecoContainer {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.dadosContainer h1,
+.enderecoContainer h1 {
+  margin-bottom: 20px;
+}
+
+.inputsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 10px;
+}
+
+.inputsContainer input {
+  height: 50px;
+  width: 30vw;
+  padding-left: 16px;
+  margin-bottom: 24px;
+  margin-right: 24px;
+  background-color: #ffffffa2;
+  border: 2px solid #ffffff;
+  border-radius: 8px;
+  outline: none;
+}
+
+.inputsContainer input:read-only {
+  height: 50px;
+  width: 30vw;
+  padding-left: 16px;
+  margin-bottom: 24px;
+  margin-right: 24px;
+  color: #0000007a;
+  background-color: #c0c0c0;
+  border: 2px solid #ffffff;
+  border-radius: 8px;
+  outline: none;
+}
+
+.inputsContainerTwo {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 10px;
+}
+
+.inputsContainerTwo input {
+  height: 50px;
+  width: 30vw;
+  padding-left: 16px;
+  margin-bottom: 24px;
+  margin-right: 24px;
+  background-color: #ffffffa2;
+  border: 2px solid #ffffff;
+  border-radius: 8px;
+  outline: none;
+}
+
+.inputsContainerTwo input:read-only {
+  height: 50px;
+  width: 30vw;
+  padding-left: 16px;
+  margin-bottom: 24px;
+  margin-right: 24px;
+  color: #0000007a;
+  background-color: #c0c0c0;
+  border: 2px solid #ffffff;
+  border-radius: 8px;
+  outline: none;
+}
+
+.complementoBox {
+  display: flex;
+}
+
+.complementoBox input {
+  width: 13.8vw;
+}
+
+.complementoBox input:read-only {
+  width: 13.8vw;
+}
+
+.labelContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.labelContainer label {
+  font-size: 20px;
+  margin-bottom: 5px;
+  color: var(--cinza-claro-padrao);
+}
+
+@media only screen and (max-width: 1194px) {
+  .complementoBox input {
+    width: 13vw;
+  }
+
+  .complementoBox input:read-only {
+    width: 13vw;
+  }
+}
+
+@media only screen and (max-width: 1058px) {
+  .complementoBox input {
+    width: 12.5vw;
+  }
+
+  .complementoBox input:read-only {
+    width: 12.5vw;
+  }
+}
+
+@media only screen and (max-width: 1019px) {
+  .perfilContainer {
+    width: 60vw;
     align-items: center;
+  }
+
+  h1 {
+    align-self: center;
+  }
+
+  .buttonStyle {
+    width: 35vw;
+  }
+
+  .buttonStyleTwo {
+    width: 25vw;
+  }
+
+  .inputsContainer {
+    justify-content: center;
+  }
+
+  .inputsContainerTwo {
+    justify-content: center;
+  }
+
+  .inputsContainer input {
+    width: 50vw;
+  }
+
+  .inputsContainer input:read-only {
+    width: 50vw;
+  }
+
+  .inputsContainerTwo input {
+    width: 50vw;
+  }
+
+  .inputsContainerTwo input:read-only {
+    width: 50vw;
+  }
+
+  .complementoBox input {
+    width: 22.6vw;
+  }
+
+  .complementoBox input:read-only {
+    width: 22.6vw;
+  }
 }
 
-.perfilContainer{
-    display: flex;
-    flex-direction: column;
-
-    width: 70vw;
-    height: max-content;
-
-    margin-top: 60px;
-    padding: 25px;
-
-    background-color: var(--cinza-header);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    border-radius: 11px;
+@media only screen and (max-width: 1019px) {
+  .buttonStyleTwo {
+    width: 22vw;
+    font-size: 18px;
+  }
 }
-
-.dadosContainer,.enderecoContainer{
-    font-style: normal;
-    font-weight: 400;
-    font-size: 32px;
-    
-    display: flex;
-    flex-direction: column;
-}
-
-.dadosContainer h1, .enderecoContainer h1{
-    margin-bottom: 20px;
-}
-
-.inputsContainer{
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: 10px;
-}
-
-.inputsContainer input{
-    height: 50px;
-    width: 30vw;
-    padding-left: 16px; 
-    margin-bottom: 24px;
-    margin-right: 24px;
-    background-color: #ffffffa2;
-    border: 2px solid #FFFFFF;
-    border-radius: 8px;
-    outline: none;
-}
-
-.inputsContainer input:read-only{
-    height: 50px;
-    width: 30vw;
-    padding-left: 16px; 
-    margin-bottom: 24px;
-    margin-right: 24px;
-    color: #0000007a;
-    background-color: #c0c0c0;
-    border: 2px solid #FFFFFF;
-    border-radius: 8px;
-    outline: none;
-}
-
-.inputsContainerTwo{
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: 10px;
-}
-
-.inputsContainerTwo input{
-    height: 50px;
-    width: 30vw;
-    padding-left: 16px; 
-    margin-bottom: 24px;
-    margin-right: 24px;
-    background-color: #ffffffa2;
-    border: 2px solid #FFFFFF;
-    border-radius: 8px;
-    outline: none;
-}
-
-.inputsContainerTwo input:read-only{
-    height: 50px;
-    width: 30vw;
-    padding-left: 16px; 
-    margin-bottom: 24px;
-    margin-right: 24px;
-    color: #0000007a;
-    background-color: #c0c0c0;
-    border: 2px solid #FFFFFF;
-    border-radius: 8px;
-    outline: none;
-}
-
-.complementoBox{
-    display: flex;
-}
-
-.complementoBox input{
-    width: 13.8vw;
-}
-
-.complementoBox input:read-only{
-    width: 13.8vw;
-}
-
-
-.labelContainer{
-    display: flex;
-    flex-direction: column;
-
-}
-
-.labelContainer label{
-    font-size: 20px;
-    margin-bottom: 5px;
-    color: var(--cinza-claro-padrao);
-}
-
-@media only screen and (max-width: 1194px){
-    .complementoBox input{
-        width: 13vw;
-    }
-    
-    .complementoBox input:read-only{
-        width: 13vw;
-    }
-}
-
-@media only screen and (max-width: 1058px){
-    .complementoBox input{
-        width: 12.5vw;
-    }
-    
-    .complementoBox input:read-only{
-        width: 12.5vw;
-    }
-}
-
-@media only screen and (max-width: 1019px){
-    .perfilContainer{
-        width: 60vw;
-        align-items: center;
-    }
-
-    h1{
-        align-self: center;
-    }
-
-    .buttonStyle{
-        width: 35vw;
-    }
-
-    .buttonStyleTwo{
-        width: 25vw;
-    }
-
-    .inputsContainer{
-        justify-content: center;
-    }
-
-    .inputsContainerTwo{
-        justify-content: center;
-    }
-
-    .inputsContainer input{
-        width: 50vw;
-    }
-
-    .inputsContainer input:read-only{
-        width: 50vw;
-    }
-
-    .inputsContainerTwo input{
-        width: 50vw;
-    }
-
-    .inputsContainerTwo input:read-only{
-        width: 50vw;
-    }
-
-    .complementoBox input{
-        width: 22.6vw;
-    }
-
-    .complementoBox input:read-only{
-        width: 22.6vw;
-    }
-}
-
-@media only screen and (max-width: 1019px){
-    .buttonStyleTwo{
-        width: 22vw;
-        font-size: 18px;
-    }
-}
-

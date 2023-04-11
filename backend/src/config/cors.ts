@@ -1,10 +1,10 @@
-import cors, {CorsOptions} from 'cors';
+import cors, { CorsOptions } from "cors";
 
 const opts: CorsOptions = {
-  origin:'*',
-  allowedHeaders:'*',
-  methods:'*'
-}
+  origin: "*",
+  allowedHeaders: "*",
+  methods: "*",
+};
 
 const corsMiddleware = cors(opts);
 

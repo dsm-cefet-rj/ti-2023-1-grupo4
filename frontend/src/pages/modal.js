@@ -1,49 +1,47 @@
-import React from 'react'
-import Button from '../components/Botao/button';
-import logo from '../assets/images/logo.png';
-import '../styles/modal.scss'
-import Cabecalho from '../components/Cabecalho/cabecalho'
-import { useState } from 'react'
-import Modal from "react-modal"
+import React from "react";
+import Button from "../components/Botao/button";
+import logo from "../assets/images/logo.png";
+import "../styles/modal.scss";
+import Cabecalho from "../components/Cabecalho/cabecalho";
+import { useState } from "react";
+import Modal from "react-modal";
 
 Modal.setAppElement("#root");
 // acho q a gnt pode deletar essa tela, eu já coloquei os botoes na tela Item
 
 export default function modal() {
-
   const [modalIsOpen, setIsOpen] = useState(false);
 
-  function openModal(){
+  function openModal() {
     setIsOpen(true);
   }
 
-  function closeModal(){
+  function closeModal() {
     setIsOpen(false);
   }
 
-
   return (
     <div>
-      <div className='sticky-pos'>
-        <Cabecalho/>
+      <div className="sticky-pos">
+        <Cabecalho />
       </div>
-      <div className='Container'>
+      <div className="Container">
         <button onClick={openModal}>Open modal</button>
         <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        contentLabel="Example Modal"
-        overlayClassName="modal-overlay"
-        className="modal-content"
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          contentLabel="Example Modal"
+          overlayClassName="modal-overlay"
+          className="modal-content"
         >
-          <img src={logo} alt="logo" className='logoModal'/>
+          <img src={logo} alt="logo" className="logoModal" />
           <h2>Combo 1</h2>
           <p>Descrição</p>
           <p>preço</p>
-          <Button texto="Adicionar"/>
+          <Button texto="Adicionar" />
           <button onClick={closeModal}> Voltar </button>
         </Modal>
       </div>
     </div>
-  )
+  );
 }

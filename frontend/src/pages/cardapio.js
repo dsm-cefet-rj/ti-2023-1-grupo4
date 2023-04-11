@@ -25,3 +25,34 @@ export default function Cardapio(){
         </div>
     );
 }
+
+export default function Modal (props) {
+    return (
+        <Modal
+                isOpen={modalIsOpen}
+                onRequestClose={closeModal}
+                contentLabel="Example Modal"
+                overlayClassName="modal-overlay"
+                className="modal-content"
+              > 
+        <div className='modal-topo'>
+            <button onClick={closeModal} className='btn-voltar'> 
+                <FontAwesomeIcon icon={faArrowLeft} />
+            </button>
+            <h2>Combo 1</h2>
+        </div>
+        <div className='modal-itens'>
+            <div className='modal-descricao'> 
+            {/* essa aqui fica na esquerda, com flex-direction column */}
+            <p>Descrição</p>
+            <p>preço</p>
+            </div>
+            <div className='modal-img'>
+                {/* essa aqui fica na direita, só com a img */}
+            <img src={logo} alt="logo" className='logoModal'/>
+            </div>
+        </div>
+        <Button texto="Adicionar" className='modal-add'/>
+        </Modal>
+    )
+}

@@ -1,175 +1,218 @@
-import '../styles/endereco.scss';
-import logo from '../assets/images/logo.png';
-import Button from '../components/Botao/button';
-import { Link } from 'react-router-dom';
-import { EnderecoAtom } from '../states/endereco';
-import { useRecoilState } from 'recoil';
-import { Formik, Field, Form } from 'formik';
-import { CadastroAtom } from '../states/cadastro';
-import { useEffect } from 'react';
+import "../styles/endereco.scss";
+import logo from "../assets/images/logo.png";
+import Button from "../components/Botao/button";
+import { Link } from "react-router-dom";
+import { EnderecoAtom } from "../states/endereco";
+import { useRecoilState } from "recoil";
+import { Formik, Field, Form } from "formik";
+import { CadastroAtom } from "../states/cadastro";
+import { useEffect } from "react";
 
-export default function Endereco(){
+export default function Endereco() {
+  const [enderecoForm, setEnderecoForm] = useRecoilState(EnderecoAtom);
+  const [cadastroForm, setCadastroForm] = useRecoilState(CadastroAtom);
 
-    const [enderecoForm, setEnderecoForm] = useRecoilState(EnderecoAtom);
-    const [cadastroForm, setCadastroForm] = useRecoilState(CadastroAtom);
+  useEffect(() => {
+    setCadastroForm(JSON.parse(sessionStorage.getItem("cadastroBuffer")));
+  }, []);
 
-    useEffect(() => {
-      setCadastroForm(JSON.parse(sessionStorage.getItem("cadastroBuffer")))
-    }, [])
-
-
-  function setEnderecoField(campo, value){
-    let tempForm = {...enderecoForm}
+  function setEnderecoField(campo, value) {
+    let tempForm = { ...enderecoForm };
     tempForm[campo] = value;
     setEnderecoForm(tempForm);
   }
 
-    function onSubmitEndereco(){
-      const initialValue = true;
+  function onSubmitEndereco() {
+    const initialValue = true;
 
-      if(!Object.values(enderecoForm).reduce((accumulator, currentValue) => !!accumulator && !!currentValue, initialValue)){
-        alert("Campo obrigatório não preenchido!");
-        return;
-      } 
-
-      let users = localStorage.getItem('fast_byte_usuarios');
-      if(!!users){
-        users = JSON.parse(users);
-        users['usuarios'].push({
-            email: cadastroForm.email,
-            password: cadastroForm.password,
-            userName: cadastroForm.userName,
-            tipo:'usuario',
-            endereco:enderecoForm
-        });
-        
-        localStorage.setItem('fast_byte_usuarios', JSON.stringify(users['usuarios']))
-
-        sessionStorage.setItem('fast_byte_token', JSON.stringify({
-            email: cadastroForm.email,
-            userName: cadastroForm.userName,
-            tipo:'usuario'
-        }));
-
-      }else{
-        localStorage.setItem('fast_byte_usuarios', JSON.stringify({
-            usuarios:[
-                {
-                    email: cadastroForm.email,
-                    password: cadastroForm.password,
-                    userName: cadastroForm.userName,
-                    tipo:'usuario',
-                    endereco:enderecoForm
-                }
-            ]
-        }))
-
-        sessionStorage.setItem('fast_byte_token', JSON.stringify({
-            email: cadastroForm.email,
-            userName: cadastroForm.userName,
-            tipo:'usuario'
-        }));
-        
-      }
-
-      sessionStorage.removeItem("cadastroBuffer");
-
-
-      window.location.href = '/cardapio'
-      
+    if (
+      !Object.values(enderecoForm).reduce(
+        (accumulator, currentValue) => !!accumulator && !!currentValue,
+        initialValue
+      )
+    ) {
+      alert("Campo obrigatório não preenchido!");
+      return;
     }
 
-    function onBlurCep(ev){
-        const { value } = ev.target; 
+    let users = localStorage.getItem("fast_byte_usuarios");
+    if (!!users) {
+      users = JSON.parse(users);
+      users["usuarios"].push({
+        email: cadastroForm.email,
+        password: cadastroForm.password,
+        userName: cadastroForm.userName,
+        tipo: "usuario",
+        endereco: enderecoForm,
+      });
 
-        const cep = value?.replace(/[^0-9]/g, '')
+      localStorage.setItem(
+        "fast_byte_usuarios",
+        JSON.stringify(users["usuarios"])
+      );
 
-        if(cep?.length !== 8){
-            return;
-        }
+      sessionStorage.setItem(
+        "fast_byte_token",
+        JSON.stringify({
+          email: cadastroForm.email,
+          userName: cadastroForm.userName,
+          tipo: "usuario",
+        })
+      );
+    } else {
+      localStorage.setItem(
+        "fast_byte_usuarios",
+        JSON.stringify({
+          usuarios: [
+            {
+              email: cadastroForm.email,
+              password: cadastroForm.password,
+              userName: cadastroForm.userName,
+              tipo: "usuario",
+              endereco: enderecoForm,
+            },
+          ],
+        })
+      );
 
-        fetch(`https://viacep.com.br/ws/${cep}/json/`)
-            .then((res) => res.json())
-            
-            .then((data) => {
-                let tempForm = {...enderecoForm}
-                
-                tempForm['bairro'] = data.bairro;
-                tempForm['logradouro'] = data.logradouro;
-                tempForm['cidade'] = data.localidade;
-                tempForm['uf'] = data.uf;
-
-                setEnderecoForm(tempForm);
-            })
+      sessionStorage.setItem(
+        "fast_byte_token",
+        JSON.stringify({
+          email: cadastroForm.email,
+          userName: cadastroForm.userName,
+          tipo: "usuario",
+        })
+      );
     }
 
+    sessionStorage.removeItem("cadastroBuffer");
 
-    return(
-        <div className="enderecoFundo">
-            <div className='enderecoPrincipal'>
-                <div className="enderecoTitulo">
-                    <h1>FastByte</h1>
-                    <img src={logo} alt="logo"/>
-                </div>
-                <div className='enderecoBox'>
-                    <Formik onSubmit={onSubmitEndereco}>
+    window.location.href = "/cardapio";
+  }
 
-                        
-                            <Form className='enderecoFormulario'>
-                                <div className='enderecoInputs'>
-                                    <label>CEP</label>
-                                    <Field name='cep' type="text" onBlur={(ev) => onBlurCep(ev)} placeholder="Digite seu CEP" 
-                                    value={enderecoForm.cep} onChange={(e) => setEnderecoField("cep", e.target.value)}
-                                    />
-                                </div>
-                                <div className='enderecoInputs'>
-                                    <label>Rua</label>
-                                    <Field name='rua' type="text" placeholder="Digite sua rua"
-                                    value={enderecoForm.logradouro} onChange={(e) => setEnderecoField("logradouro", e.target.value)}
+  function onBlurCep(ev) {
+    const { value } = ev.target;
 
-                                    />
-                                </div>
-                                <div className='enderecoInputs'>
-                                    <label>Bairro</label>
-                                    <Field name='bairro' type="text" placeholder="Digite seu bairro"
-                                    value={enderecoForm.bairro} onChange={(e) => setEnderecoField("bairro", e.target.value)}
-                                    />
-                                </div>
-                                <div className='complementoContainer'>
-                                    <div className='complementoInputs'>
-                                    <label>Número</label>
-                                    <Field name='numero' type="text" placeholder="Digite o numero"
-                                    value={enderecoForm.numero} onChange={(e) => setEnderecoField("numero", e.target.value)}
-                                    />
-                                    </div>
-                                    <div className='complementoInputs'>
-                                        <label>Complemeto</label>
-                                        <Field name='complemento' type="text" placeholder="Digite o complemento"
-                                        value={enderecoForm.complemento} onChange={(e) => setEnderecoField("complemento", e.target.value)}
-                                        />
-                                    </div>
-                                </div>
-                                <div className='enderecoInputs'>
-                                    <label>Cidade</label>
-                                    <Field name='cidade' type="text" placeholder="Digite sua cidade"
-                                    value={enderecoForm.cidade} onChange={(e) => setEnderecoField("cidade", e.target.value)}
-                                    />
-                                </div>
-                                <div className='enderecoInputs'>
-                                    <label>Estado</label>
-                                    <Field component='select' name='uf'  placeholder="Digite sua cidade"
-                                    value={enderecoForm.uf} onChange={(e) => setEnderecoField("uf", e.target.value)}
-                                    >
-                                        <option className='enderecoOption' value={null}>Selecione o estado</option>
-                                        <option className='enderecoOption' value={"RJ"}>Rio de janeiro</option>
-                                    </Field>
-                                </div>
-                                    <Button type="submit" texto='Confirmar'/>
-                            </Form>
-                        
-                    </Formik>
-                </div>
-            </div>
+    const cep = value?.replace(/[^0-9]/g, "");
+
+    if (cep?.length !== 8) {
+      return;
+    }
+
+    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+      .then((res) => res.json())
+
+      .then((data) => {
+        let tempForm = { ...enderecoForm };
+
+        tempForm["bairro"] = data.bairro;
+        tempForm["logradouro"] = data.logradouro;
+        tempForm["cidade"] = data.localidade;
+        tempForm["uf"] = data.uf;
+
+        setEnderecoForm(tempForm);
+      });
+  }
+
+  return (
+    <div className="enderecoFundo">
+      <div className="enderecoPrincipal">
+        <div className="enderecoTitulo">
+          <h1>FastByte</h1>
+          <img src={logo} alt="logo" />
         </div>
-    )
+        <div className="enderecoBox">
+          <Formik onSubmit={onSubmitEndereco}>
+            <Form className="enderecoFormulario">
+              <div className="enderecoInputs">
+                <label>CEP</label>
+                <Field
+                  name="cep"
+                  type="text"
+                  onBlur={(ev) => onBlurCep(ev)}
+                  placeholder="Digite seu CEP"
+                  value={enderecoForm.cep}
+                  onChange={(e) => setEnderecoField("cep", e.target.value)}
+                />
+              </div>
+              <div className="enderecoInputs">
+                <label>Rua</label>
+                <Field
+                  name="rua"
+                  type="text"
+                  placeholder="Digite sua rua"
+                  value={enderecoForm.logradouro}
+                  onChange={(e) =>
+                    setEnderecoField("logradouro", e.target.value)
+                  }
+                />
+              </div>
+              <div className="enderecoInputs">
+                <label>Bairro</label>
+                <Field
+                  name="bairro"
+                  type="text"
+                  placeholder="Digite seu bairro"
+                  value={enderecoForm.bairro}
+                  onChange={(e) => setEnderecoField("bairro", e.target.value)}
+                />
+              </div>
+              <div className="complementoContainer">
+                <div className="complementoInputs">
+                  <label>Número</label>
+                  <Field
+                    name="numero"
+                    type="text"
+                    placeholder="Digite o numero"
+                    value={enderecoForm.numero}
+                    onChange={(e) => setEnderecoField("numero", e.target.value)}
+                  />
+                </div>
+                <div className="complementoInputs">
+                  <label>Complemeto</label>
+                  <Field
+                    name="complemento"
+                    type="text"
+                    placeholder="Digite o complemento"
+                    value={enderecoForm.complemento}
+                    onChange={(e) =>
+                      setEnderecoField("complemento", e.target.value)
+                    }
+                  />
+                </div>
+              </div>
+              <div className="enderecoInputs">
+                <label>Cidade</label>
+                <Field
+                  name="cidade"
+                  type="text"
+                  placeholder="Digite sua cidade"
+                  value={enderecoForm.cidade}
+                  onChange={(e) => setEnderecoField("cidade", e.target.value)}
+                />
+              </div>
+              <div className="enderecoInputs">
+                <label>Estado</label>
+                <Field
+                  component="select"
+                  name="uf"
+                  placeholder="Digite sua cidade"
+                  value={enderecoForm.uf}
+                  onChange={(e) => setEnderecoField("uf", e.target.value)}
+                >
+                  <option className="enderecoOption" value={null}>
+                    Selecione o estado
+                  </option>
+                  <option className="enderecoOption" value={"RJ"}>
+                    Rio de janeiro
+                  </option>
+                </Field>
+              </div>
+              <Button type="submit" texto="Confirmar" />
+            </Form>
+          </Formik>
+        </div>
+      </div>
+    </div>
+  );
 }

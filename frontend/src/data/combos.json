@@ -1,25 +1,25 @@
 {
-    "tipo":"Combos",
-    "list":[
-        {
-            "nome": "Combo 1",
-            "itens": [
-                "1x Hamburguer de Carne",
-                "1x Refrigerante 500 ml",
-                "1x Batata frita M"
-            ],
-            "preco": "R$ 20,00",
-            "tipo":"combo"
-        },
-        {
-            "nome": "Combo 2",
-            "itens": [
-                "1x Hamburguer de frango",
-                "1x Refrigerante 500 ml",
-                "1x Batata frita M"
-            ],
-            "preco": "R$ 15,00",
-            "tipo": "combo"
-        }
-    ]
+  "tipo": "Combos",
+  "list": [
+    {
+      "nome": "Combo 1",
+      "itens": [
+        "1x Hamburguer de Carne",
+        "1x Refrigerante 500 ml",
+        "1x Batata frita M"
+      ],
+      "preco": "R$ 20,00",
+      "tipo": "combo"
+    },
+    {
+      "nome": "Combo 2",
+      "itens": [
+        "1x Hamburguer de frango",
+        "1x Refrigerante 500 ml",
+        "1x Batata frita M"
+      ],
+      "preco": "R$ 15,00",
+      "tipo": "combo"
+    }
+  ]
 }

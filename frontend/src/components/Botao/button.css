@@ -1,31 +1,31 @@
-.menuBotao{
-    width: 200px;
-    height: 50px;
-    background: linear-gradient(to bottom right, #FFE600 0%, #FF7A00 100%);
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
+.menuBotao {
+  width: 200px;
+  height: 50px;
+  background: linear-gradient(to bottom right, #ffe600 0%, #ff7a00 100%);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  margin: 0px 10px 0px 10px;
+  color: #1e1e1e;
+  border: 0;
+  font-size: 20px;
+  transition-duration: 0.4s;
+}
+
+.menuBotao:hover {
+  background: var(--cinza-detalhe);
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 580px) {
+  .menuBotao {
+    width: 160px;
     margin: 0px 10px 0px 10px;
-    color: #1E1E1E;
-    border: 0;
-    font-size: 20px;
-    transition-duration: 0.4s;
+  }
 }
 
-.menuBotao:hover{
-    background: var(--cinza-detalhe);
-    cursor: pointer;
-}
-
-@media only screen and (max-width: 580px){
-    .menuBotao{
-        width: 160px;
-        margin: 0px 10px 0px 10px;
-    }
-}
-
-@media only screen and (max-width: 460px){
-    .menuBotao{
-        width: 125px;
-        margin: 0px 10px 0px 10px;
-    }
+@media only screen and (max-width: 460px) {
+  .menuBotao {
+    width: 125px;
+    margin: 0px 10px 0px 10px;
+  }
 }

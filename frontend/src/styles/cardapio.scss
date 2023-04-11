@@ -1,67 +1,67 @@
-.cardapioPrincipal{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 100px;
+.cardapioPrincipal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 100px;
 }
 
-.itens{
-    display: flex;
-    align-items: center;
-    margin-top: 200px;/* NÃO MEXER*/
-    background-color: var(--cinza-header);
-    height: 88px;
-    width: 1140px;
+.itens {
+  display: flex;
+  align-items: center;
+  margin-top: 200px; /* NÃO MEXER*/
+  background-color: var(--cinza-header);
+  height: 88px;
+  width: 1140px;
 }
 
-.itens h1{
-    margin-left: 200px;
+.itens h1 {
+  margin-left: 200px;
 }
 
-body{
-    font-family: 'Exo 2', sans-serif;
+body {
+  font-family: "Exo 2", sans-serif;
 }
 
-.itemBox{
-    width: 100%;
-    margin-left: 25px;
-    border-radius: 11px;
-    margin-top: 30px;
-    background-color: var(--cinza-header);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.itemBox {
+  width: 100%;
+  margin-left: 25px;
+  border-radius: 11px;
+  margin-top: 30px;
+  background-color: var(--cinza-header);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.itemBox h2{
-    font-size: 24px;
-    font-weight: bold;
-    margin: 13px 0px 13px 20px;
-    /*border-bottom: solid 1px;*/
+.itemBox h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 13px 0px 13px 20px;
+  /*border-bottom: solid 1px;*/
 }
 
-.itemBox ul{
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
+.itemBox ul {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 
-.itemBox ul li{
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 745px;
-    height: 111px;
-    border-radius: 18px;
-    border: solid 1px #050607;
-    cursor: pointer;
-    transition: 0.3s;
+.itemBox ul li {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 745px;
+  height: 111px;
+  border-radius: 18px;
+  border: solid 1px #050607;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.itemBox img{
-    width: 70px;
-    height: 70px;
+.itemBox img {
+  width: 70px;
+  height: 70px;
 }

@@ -1,10 +1,9 @@
-import {Request, Response} from 'express';
+import { Request, Response } from "express";
 
-
-export function loginController (req:Request, res:Response) {
-  res.send('loginController');
+export function loginController(req: Request, res: Response) {
+  res.send("loginController");
 }
 
-export function registerController (req:Request, res:Response) {
-  res.send('registerController');
+export function registerController(req: Request, res: Response) {
+  res.send("registerController");
 }
