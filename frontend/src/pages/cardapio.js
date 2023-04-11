@@ -1,20 +1,26 @@
 import Cabecalho from '../components/Cabecalho/cabecalho';
 import ItensBox from '../components/Item/Item';
 import Navbar from '../components/Navbar/Navbar';
-import '../styles/cardapio.scss'
 import React from 'react';
-import { useState } from 'react';
-import { useRecoilState } from 'recoil';
-import { CombosAtom, BebidasAtom, SobremesasAtom } from '../states/cardapio';
-
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { CombosAtom, BebidasAtom, SobremesasAtom, itemSelecionadoAtom, ModalItemSelector } from '../states/cardapio';
+import '../styles/cardapio.scss'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import Button from "../components/Botao/button";
+import logo from "../assets/images/logo.png";
+import Modal from "react-modal";
 
 export default function Cardapio(){
 
-    const [comboBox, setComboBox] = useRecoilState(CombosAtom)
-    const [bebidasBox, setBebibasBox] = useRecoilState(BebidasAtom)
-    const [sobremesasBox, setSobremesasBox] = useRecoilState(SobremesasAtom)
+    const [item] = useRecoilState(itemSelecionadoAtom);
+    const [comboBox] = useRecoilState(CombosAtom)
+    const [bebidasBox] = useRecoilState(BebidasAtom)
+    const [sobremesasBox] = useRecoilState(SobremesasAtom)
+    
     return(
         <div className='cardapioPrincipal'>
+            <ModalComponent isOpen={!!item} overlayClassName="modal-overlay" className="modal-content"/>
             <div className='sticky-pos'>
                 <Cabecalho/>
                 <Navbar/>
@@ -26,33 +32,43 @@ export default function Cardapio(){
     );
 }
 
-export default function Modal (props) {
+function ModalComponent ({isOpen, overlayClassName, className}) {
+    
+    const [_, setItem] = useRecoilState(itemSelecionadoAtom);
+
+    const ModalInfo = useRecoilValue(ModalItemSelector);
+
     return (
         <Modal
-                isOpen={modalIsOpen}
-                onRequestClose={closeModal}
-                contentLabel="Example Modal"
-                overlayClassName="modal-overlay"
-                className="modal-content"
-              > 
-        <div className='modal-topo'>
-            <button onClick={closeModal} className='btn-voltar'> 
-                <FontAwesomeIcon icon={faArrowLeft} />
-            </button>
-            <h2>Combo 1</h2>
-        </div>
-        <div className='modal-itens'>
-            <div className='modal-descricao'> 
-            {/* essa aqui fica na esquerda, com flex-direction column */}
-            <p>Descrição</p>
-            <p>preço</p>
+            isOpen={isOpen}
+            overlayClassName={overlayClassName}
+            className={className}
+        > 
+            <div className='modal-topo'>
+                <button onClick={() => {
+                    console.log(ModalInfo)
+                        setItem(null);
+                    }} className='btn-voltar'> 
+                    <FontAwesomeIcon icon={faArrowLeft} />
+                </button>
+                <h2>{ModalInfo?.nome}</h2>
             </div>
-            <div className='modal-img'>
-                {/* essa aqui fica na direita, só com a img */}
-            <img src={logo} alt="logo" className='logoModal'/>
+            <div className='modal-itens'>
+                <div className='modal-descricao'> 
+                {/* essa aqui fica na esquerda, com flex-direction column */}
+                {
+                    ModalInfo.tipo === 'combo'
+                    ? ModalInfo.itens.map(v => (<p>{v}</p>))
+                    : (<p>1x {ModalInfo.nome}</p>)
+                }
+                <p>{ModalInfo.preco}</p>
+                </div>
+                <div className='modal-img'>
+                    {/* essa aqui fica na direita, só com a img */}
+                <img src={logo} alt="logo" className='logoModal'/>
+                </div>
             </div>
-        </div>
-        <Button texto="Adicionar" className='modal-add'/>
+            <Button texto="Adicionar" className='modal-add'/>
         </Modal>
     )
 }

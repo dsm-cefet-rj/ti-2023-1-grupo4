@@ -1,26 +1,12 @@
 import "./item.scss";
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import Modal from "react-modal";
-import logo from "../../assets/images/logo.png";
-import { useRecoilState } from "recoil";
 import "../../styles/modal.scss";
-import Button from "../../components/Botao/button";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { itemSelecionadoAtom } from "../../states/cardapio";
+import { useRecoilState } from "recoil";
 
-Modal.setAppElement("#root");
 
 export default function ItemBox(props) {
-  const [modalIsOpen, setIsOpen] = useState(false);
-
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
+  
+  const [_, setItem] = useRecoilState(itemSelecionadoAtom);
 
   return (
     <div className={props.className}>
@@ -28,14 +14,20 @@ export default function ItemBox(props) {
         <ul>
           <li>
             <h1>{props.tipo}</h1>
-            {props.list.map((ev) =>
+            {props.list.map((ev, i) =>
               ev.tipo === "combo" ? (
-                <Combo nome={ev.nome} preco={ev.preco} itens={ev.itens} />
+                <Combo
+                  nome={ev.nome}
+                  preco={ev.preco}
+                  itens={ev.itens}
+                  onClick = {() => setItem({index:i, tipo:props.id})}
+                />
               ) : (
                 <Item
                   nome={ev.nome}
                   preco={ev.preco}
                   descricao={ev.descricao}
+                  onClick = {() => setItem({index:i, tipo:props.id})}
                 />
               )
             )}
@@ -47,17 +39,9 @@ export default function ItemBox(props) {
 }
 
 function Item(props) {
-  const [modalIsOpen, setIsOpen] = useState(false);
 
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
   return (
-    <div className="comboItensBox" onClick={openModal}>
+    <div className="comboItensBox" onClick={props.onClick}>
       <ul>
         <li>
           <a>
@@ -72,17 +56,9 @@ function Item(props) {
 }
 
 function Combo(props) {
-  const [modalIsOpen, setIsOpen] = useState(false);
 
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
   return (
-    <div className="comboItensBox" onClick={openModal}>
+    <div className="comboItensBox" onClick={props.onClick}>
       <ul>
         <li>
           <a>
@@ -94,38 +70,6 @@ function Combo(props) {
           </a>
         </li>
       </ul>
-      <div className="Container">
-        <Modal
-          isOpen={modalIsOpen}
-          onRequestClose={closeModal}
-          contentLabel="Example Modal"
-          overlayClassName="modal-overlay"
-          className="modal-content"
-        >
-          <div className="modal-topo">
-            <button onClick={closeModal} className="btn-voltar">
-              <FontAwesomeIcon icon={faArrowLeft} />
-            </button>
-            <h2>Combo 1</h2>
-          </div>
-          <div className="modal-itens">
-            <div className="modal-descricao">
-              {/* essa aqui fica na esquerda, com flex-direction column */}
-              <p>Descrição</p>
-              <p>preço</p>
-            </div>
-            <div className="modal-img">
-              {/* essa aqui fica na direita, só com a img */}
-              <img src={logo} alt="logo" className="logoModal" />
-            </div>
-          </div>
-
-          <div className="modal-add">
-            <Button texto="Adicionar" />
-          </div>
-          {/* <button onClick={closeModal}> Voltar </button> */}
-        </Modal>
-      </div>
     </div>
   );
 }
