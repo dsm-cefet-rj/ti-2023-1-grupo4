@@ -7,6 +7,8 @@ import { useRecoilState } from "recoil";
 import { Formik, Field, Form } from "formik";
 import { CadastroAtom } from "../states/cadastro";
 import { useEffect } from "react";
+import { inicilizaCarrinho } from "../services/carrinho";
+
 
 export default function Endereco() {
   const [enderecoForm, setEnderecoForm] = useRecoilState(EnderecoAtom);
@@ -23,14 +25,14 @@ export default function Endereco() {
   }
 
   function onSubmitEndereco() {
-    const initialValue = true;
-
-    if (
-      !Object.values(enderecoForm).reduce(
+    let initialValue = true;
+    initialValue = !Object.values(enderecoForm).reduce(
         (accumulator, currentValue) => !!accumulator && !!currentValue,
         initialValue
       )
-    ) {
+      console.log(initialValue)
+      console.log(enderecoForm)
+    if (initialValue) {
       alert("Campo obrigatório não preenchido!");
       return;
     }
@@ -48,7 +50,7 @@ export default function Endereco() {
 
       localStorage.setItem(
         "fast_byte_usuarios",
-        JSON.stringify(users["usuarios"])
+        JSON.stringify(users)
       );
 
       sessionStorage.setItem(
@@ -59,6 +61,7 @@ export default function Endereco() {
           tipo: "usuario",
         })
       );
+      inicilizaCarrinho();
     } else {
       localStorage.setItem(
         "fast_byte_usuarios",
@@ -74,6 +77,8 @@ export default function Endereco() {
           ],
         })
       );
+      inicilizaCarrinho();
+
 
       sessionStorage.setItem(
         "fast_byte_token",
@@ -122,7 +127,7 @@ export default function Endereco() {
           <img src={logo} alt="logo" />
         </div>
         <div className="enderecoBox">
-          <Formik onSubmit={onSubmitEndereco}>
+          <Formik initialValues={enderecoForm} onSubmit={onSubmitEndereco}>
             <Form className="enderecoFormulario">
               <div className="enderecoInputs">
                 <label>CEP</label>

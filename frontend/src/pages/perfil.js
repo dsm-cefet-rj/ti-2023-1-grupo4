@@ -9,6 +9,9 @@ export default function perfil() {
 
   const [form, setForm] = useState({});
 
+  
+  
+
   return (
     <div>
       <div className="sticky-pos">
@@ -97,11 +100,12 @@ export default function perfil() {
             </div>
           ) : (
             <div id="submit-wrapper">
-              <button className="buttonStyleTwo" onClick={() => setEdit(!edit)}>
-                Cancelar
-              </button>
+              
               <button className="buttonStyleTwo" onClick={() => setEdit(!edit)}>
                 Salvar
+              </button>
+              <button className="buttonStyleTwo" onClick={() => setEdit(!edit)}>
+                Cancelar
               </button>
             </div>
           )}

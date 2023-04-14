@@ -3,22 +3,23 @@ import Cabecalho from "../components/Cabecalho/cabecalho";
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import Button from "../components/Botao/button";
-
+import { useRecoilState } from "recoil";
 import "../styles/carrinho.scss"; // importando o arquivo de estilos CSS
+import { CarrinhoAtom } from "../states/carrinho";
+import { setItensCarrinho } from "../services/carrinho";
+
 
 export default function Carrinho() {
-  const [cartItems, setCartItems] = useState([
-    { id: 1, name: "Combo 1", price: 19.99 },
-    { id: 2, name: "Combo 2", price: 22.99 },
-    { id: 3, name: "Coca-cola", price: 4.99 },
-    { id: 4, name: "Guarana", price: 2.99 },
-    { id: 5, name: "Pudim", price: 11.99 },
-  ]);
+  
+  const [carrinho, setCarrinha] = useRecoilState(CarrinhoAtom)
+
+
+  
   const [totalPrice, setTotalPrice] = useState(0);
   const [paymentOption, setPaymentOption] = useState("card");
 
   const clearCart = () => {
-    setCartItems([]);
+    setCarrinha([]);
     setTotalPrice(0);
   };
 
@@ -27,13 +28,14 @@ export default function Carrinho() {
   };
 
   useEffect(() => {
+    setItensCarrinho(carrinho)
     calculateTotalPrice();
-  }, [cartItems]);
+  }, [carrinho]);
 
   const calculateTotalPrice = () => {
     let total = 0;
-    cartItems.forEach((item) => {
-      total += item.price;
+    carrinho.forEach((item) => {
+      total += parseFloat(item.preco.replace(/[^0-9,]/g,"").replace(",","."));
     });
     setTotalPrice(total);
   };
@@ -56,10 +58,10 @@ export default function Carrinho() {
             </button>
           </div>
           <div className="cart-items">
-            {cartItems.map((item) => (
-              <div className="cart-item" key={item.id}>
-                <p>{item.name}</p>
-                <p>R$ {item.price.toFixed(2)}</p>
+            {carrinho.map((item) => (
+              <div className="cart-item">
+                <p>{item.nome}</p>
+                <p>{item.preco}</p>
               </div>
             ))}
           </div>

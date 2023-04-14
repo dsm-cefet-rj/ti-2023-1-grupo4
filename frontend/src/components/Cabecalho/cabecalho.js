@@ -2,6 +2,10 @@ import logo from "../../assets/images/logo.png";
 import { Link } from "react-router-dom";
 import "./cabecalho.scss";
 import { CombosAtom } from "../../states/cardapio";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+
+
 
 export default function Cabecalho() {
   return (
@@ -42,7 +46,15 @@ export default function Cabecalho() {
           >
             Menu
           </button>
-        </div>
+          <Link to={"/carrinho"}>
+            <button
+            className="expand-btn text-gradient" style={{marginLeft: 5}}>
+            <FontAwesomeIcon icon={faCartShopping} style={{color: "#ffab00",}} />         
+          </button>
+          </Link>
+          
+          
+          </div>
       </header>
 
       {/* Menu mobile */}

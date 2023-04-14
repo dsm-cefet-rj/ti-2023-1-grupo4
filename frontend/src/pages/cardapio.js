@@ -1,7 +1,7 @@
 import Cabecalho from '../components/Cabecalho/cabecalho';
 import ItensBox from '../components/Item/Item';
 import Navbar from '../components/Navbar/Navbar';
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { CombosAtom, BebidasAtom, SobremesasAtom, itemSelecionadoAtom, ModalItemSelector } from '../states/cardapio';
 import '../styles/cardapio.scss'
@@ -10,6 +10,9 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import Button from "../components/Botao/button";
 import logo from "../assets/images/logo.png";
 import Modal from "react-modal";
+import { setItensCarrinho } from '../services/carrinho';
+import { CarrinhoAtom } from '../states/carrinho';
+
 
 export default function Cardapio(){
 
@@ -38,6 +41,22 @@ function ModalComponent ({isOpen, overlayClassName, className}) {
 
     const ModalInfo = useRecoilValue(ModalItemSelector);
 
+    const [carrinho, setCarrinha] = useRecoilState(CarrinhoAtom)
+
+
+    function adicionarItem(){
+        setCarrinha([...carrinho, ModalInfo])
+        closeModal();
+    }
+
+    function closeModal(){
+        setItem(null);
+    }
+
+    useEffect(() => {
+      setItensCarrinho(carrinho)
+    }, [carrinho]);
+
     return (
         <Modal
             isOpen={isOpen}
@@ -45,10 +64,7 @@ function ModalComponent ({isOpen, overlayClassName, className}) {
             className={className}
         > 
             <div className='modal-topo'>
-                <button onClick={() => {
-                    console.log(ModalInfo)
-                        setItem(null);
-                    }} className='btn-voltar'> 
+                <button onClick={closeModal} className='btn-voltar'> 
                     <FontAwesomeIcon icon={faArrowLeft} />
                 </button>
                 <h2>{ModalInfo?.nome}</h2>
@@ -68,7 +84,7 @@ function ModalComponent ({isOpen, overlayClassName, className}) {
                 <img src={logo} alt="logo" className='logoModal'/>
                 </div>
             </div>
-            <Button texto="Adicionar" className='modal-add'/>
+            <Button texto="Adicionar" className='modal-add' onClick={adicionarItem}/>
         </Modal>
     )
 }

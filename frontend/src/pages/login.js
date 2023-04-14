@@ -3,6 +3,7 @@ import Button from "../components/Botao/button";
 import logo from "../assets/images/logo.png";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { inicilizaCarrinho } from "../services/carrinho";
 //import { useHistory } from "react-router-dom";
 
 export default function Login() {
@@ -43,8 +44,8 @@ export default function Login() {
             email: hasUser.email,
             tipo: hasUser.tipo,
             userName: hasUser.userName,
-          })
-        );
+          }));
+        inicilizaCarrinho();
       } else {
         alert("Email ou senha incorretos.");
         return;
