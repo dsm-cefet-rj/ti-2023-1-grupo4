@@ -1,0 +1,53 @@
+.containerAdm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.cabecalhoAdm {
+  background: linear-gradient(
+    var(--cinza-claro-padrao),
+    var(--cinza-escuro-padrao)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Exo 2", sans-serif;
+  padding: 1rem;
+}
+
+.cabecalhoAdm-brand {
+  margin-left: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.cabecalhoAdm h1 {
+  background-image: linear-gradient(
+    to right,
+    var(--amarelo-padrao),
+    var(--laranja-padrao)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.cabecalhoAdm img {
+  width: 50px;
+  height: 50px;
+  animation: flipBurguer 2s;
+}
+
+@keyframes flipBurguer {
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}

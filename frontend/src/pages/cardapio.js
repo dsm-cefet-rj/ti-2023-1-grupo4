@@ -54,7 +54,7 @@ function ModalComponent ({isOpen, overlayClassName, className}) {
     }
 
     useEffect(() => {
-      setItensCarrinho(carrinho)
+        setItensCarrinho(carrinho)
     }, [carrinho]);
 
     return (

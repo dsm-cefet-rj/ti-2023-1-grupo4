@@ -10,5 +10,7 @@ export function setItensCarrinho(itens){
 
 export function getItensCarrinho(){
   let carrinho = JSON.parse(sessionStorage.getItem("fastByteCarrinho"));
-  return carrinho.itens;
+  if (carrinho && carrinho.itens) {
+    return carrinho.itens;
+  }
 }

@@ -1,0 +1,112 @@
+.principalDashboard{
+  position: fixed;
+  height: 100%;
+}
+
+.containerDashboard{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1%;
+}
+
+.pdd{
+    height: 372px;
+    width: 1388px;
+    background-color: var(--cinza-claro-padrao);
+    border-radius: 11px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.relatorios{
+  display: flex;
+  margin-top: 2%;
+}
+
+.itensMaisVendidos, .ticketMedio, .vendasSemanais{
+    width: 460px;
+    height: 372px;
+    background-color: var(--cinza-claro-padrao);  
+    border-radius: 11px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    padding: 2%;
+    font-weight: bold;
+}
+
+.itensMaisVendidos h2{
+  background-image: linear-gradient(
+    to right,
+    var(--amarelo-padrao),
+    var(--laranja-padrao)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
+.itensMaisVendidos h3{
+  font-size: 28px;
+  color: var(--laranja-padrao);
+}
+
+.ticketMedio p{
+  background-image: linear-gradient(
+    to right,
+    var(--amarelo-padrao),
+    var(--laranja-padrao)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
+.vendasSemanais p{
+  background-image: linear-gradient(
+    to right,
+    var(--amarelo-padrao),
+    var(--laranja-padrao)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
+.itensMaisVendidos, .ticketMedio{
+  margin-right: 3%;
+}
+
+h1{
+    color: white;
+    margin-bottom: 2%;
+    font-size: 30px;
+}
+
+// .itensMaisVendidos{
+//     color: var(--amarelo-padrao);
+
+// }
+
+.ticketMedio{
+    font-size: 80px;
+    font-weight: bold;
+}
+
+.vendasSemanais{
+    font-size: 80px;
+}
+
+.ticketMedioPreco, .vendasSemanaisQtd{
+  padding-top: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.itensMaisVendidosLista{
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
