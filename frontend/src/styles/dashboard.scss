@@ -12,10 +12,10 @@
 
 .pdd{
     height: 372px;
-    width: 1388px;
+    width: 75vw;
     background-color: var(--cinza-claro-padrao);
     border-radius: 11px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
 }
 
 .relatorios{
@@ -24,11 +24,11 @@
 }
 
 .itensMaisVendidos, .ticketMedio, .vendasSemanais{
-    width: 460px;
+    width: 25vw;
     height: 372px;
     background-color: var(--cinza-claro-padrao);  
     border-radius: 11px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
     padding: 2%;
     font-weight: bold;
 }
@@ -78,7 +78,7 @@
   margin-right: 3%;
 }
 
-h1{
+.principalDashboard h1{
     color: white;
     margin-bottom: 2%;
     font-size: 30px;
