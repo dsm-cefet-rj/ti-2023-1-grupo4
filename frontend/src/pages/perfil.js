@@ -2,15 +2,12 @@ import React from "react";
 import Button from "../components/Botao/button";
 import "../styles/perfil.scss";
 import Cabecalho from "../components/Cabecalho/cabecalho";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function perfil() {
   const [edit, setEdit] = useState(false);
 
   const [form, setForm] = useState({});
-
-  
-  
 
   return (
     <div>
@@ -24,7 +21,7 @@ export default function perfil() {
             <div className="inputsContainer">
               <InputField
                 label={"Nome de Usuário"}
-                value={"Marcelo Nóbreghas"}
+                value={"Marcelo"}
                 type={"text"}
                 editable={edit}
               />

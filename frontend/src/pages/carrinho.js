@@ -16,7 +16,7 @@ export default function Carrinho() {
 
   
   const [totalPrice, setTotalPrice] = useState(0);
-  const [paymentOption, setPaymentOption] = useState("card");
+  const [paymentOption, setPaymentOption] = useState(null);
 
   const clearCart = () => {
     setCarrinha([]);
@@ -41,9 +41,16 @@ export default function Carrinho() {
   };
 
   const confirmOrder = () => {
-    alert("Pedido confirmado!");
+    if (carrinho.length === 0) {
+      alert("O carrinho está vazio.");
+    } else if (paymentOption === null) {
+      alert("Por favor, escolha uma forma de pagamento.");
+    } else {
+      alert("Pedido confirmado!");
+    }
   };
 
+  
   return (
     <div>
       <div className="sticky-pos">
@@ -73,11 +80,14 @@ export default function Carrinho() {
             <label for="opcoes-pagamento">
               Escolha uma opção de pagamento:
             </label>
-            <select id="opcoes-pagamento" name="opcoes-pagamento">
+            <select id="opcoes-pagamento" name="opcoes-pagamento"
+            onChange={handlePaymentOptionChange}
+            >
               <option value={null}>Selecione a forma de pagamento</option>
               <option value="cartao">Cartão</option>
               <option value="dinheiro">Dinheiro</option>
               <option value="pix">PIX</option>
+              
             </select>
           </div>
           <div className="button">
