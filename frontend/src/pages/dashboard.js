@@ -5,6 +5,8 @@ import '../styles/dashboardRel.scss'
 import Button from "../components/Botao/button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faCheck, faLoader, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
+
 
 export default function dashboard() {
   const list = [
@@ -127,8 +129,13 @@ export default function dashboard() {
             <div className='add-item'>
               <h2>Modificar cardápio: </h2>
               <hr/>
-              <Button texto="Adicionar item"></Button>
-              <Button texto="Remover item"></Button>
+              <Link to="/adicionaritem">
+                <Button texto="Adicionar item"></Button>
+              </Link>
+              <Link to="/removeritem">
+                <Button texto="Remover item"></Button>
+              </Link>
+              
             </div>
             <div className='pdd-recebidos'>
               <h2>Pedidos recebidos: </h2>

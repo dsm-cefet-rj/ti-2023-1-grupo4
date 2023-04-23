@@ -45,7 +45,7 @@
 }
 
 .add-item Button{
-  width: 80%;
+  width: 100%;
   height: 126px;
 
   margin-top: 18px;
@@ -67,11 +67,11 @@
   display: flex;
   justify-content: space-between;
   color: white;
-  margin-left: 10px;
+  margin-left: 5px;
 }
 
 .pdd-recebidos-lista p{
-  margin-left: 10px;
+  margin-left: 5px;
 }
 
 .pdd-recebidos-lista-itens{
@@ -90,7 +90,7 @@
 
   border-radius: 8px;
   border: none;
-  margin-right: 5px;
+  margin-right: 10px;
   margin-top: 10px;
 
   background-image: linear-gradient(
@@ -111,12 +111,12 @@
   display: flex;
   color: white;
   margin-top: 5px;
-  margin-left: 10px;
+  margin-left: 5px;
   margin-bottom: 10px;
 }
 
 .pdd-preparar-lista p{
-  margin-left: 10px;
+  margin-left: 5px;
 }
 
 .pdd-preparar-lista-itens{
@@ -125,7 +125,7 @@
 }
 
 .pdd-preparar-lista-button Button{
-  width: 150px;
+  width: 90%;
   height: 45px;
   font-size: 16px;
   font-weight: bold;

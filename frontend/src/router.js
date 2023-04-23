@@ -8,6 +8,8 @@ import Perfil from "./pages/perfil";
 import Carrinho from "./pages/carrinho";
 import StatusPedido from "./pages/statuspedido";
 import Dashboard from "./pages/dashboard"
+import Removeritem from "./pages/removeritem";
+import Adicionaritem from "./pages/adicionaritem";
 
 export default function AppRouter() {
   return (
@@ -22,6 +24,8 @@ export default function AppRouter() {
         <Route path="/carrinho" element={<Carrinho />} />
         <Route path="/statuspedido" element={<StatusPedido />} />
         <Route path="/dashboard" element={<Dashboard/>}/>
+        <Route path="/removeritem" element={<Removeritem/>}/>
+        <Route path="/adicionaritem" element={<Adicionaritem/>}/>
       </Routes>
     </Router>
   );
