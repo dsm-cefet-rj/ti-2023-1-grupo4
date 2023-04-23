@@ -73,13 +73,14 @@ body {
 #menu.mobile > .menu-item {
   width: 100%;
   margin-left: 0px;
+  display: flex;
+  justify-content: center;
 }
 
 #menu.mobile > .menu-item > button {
   border-top-width: 1px;
   border-color: #ffe6002a;
-  width: 90%;
-  margin-left: 5%;
+  width: 85%;
 }
 
 .menu-item {

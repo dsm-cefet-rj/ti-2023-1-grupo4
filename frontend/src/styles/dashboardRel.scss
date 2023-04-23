@@ -1,0 +1,87 @@
+.relatorios{
+    display: flex;
+    margin-top: 2%;
+  }
+  
+.itensMaisVendidos, .ticketMedio, .vendasSemanais{
+    width: 27vw;
+    height: 372px;
+    background-color: var(--cinza-claro-padrao);  
+    border-radius: 11px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    padding: 2%;
+    font-weight: bold;
+}
+
+.itensMaisVendidos h2, .ticketMedio p, .vendasSemanais p{
+    background-image: linear-gradient(
+        to right,
+        var(--amarelo-padrao),
+        var(--laranja-padrao)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+}
+
+.itensMaisVendidos h3{
+    font-size: 28px;
+    color: var(--laranja-padrao);
+}
+
+
+.itensMaisVendidos, .ticketMedio{
+    margin-right: 3%;
+}
+
+.ticketMedio{
+    font-size: 80px;
+    font-weight: bold;
+}
+
+.vendasSemanais{
+    font-size: 80px;
+}
+
+.ticketMedioPreco, .vendasSemanaisQtd{
+  padding-top: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.itensMaisVendidosLista{
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media only screen and (max-width: 1000px){
+    .relatorios{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+        margin-left: 0;
+        margin-right: 0;
+      }
+    
+      .itensMaisVendidos, .ticketMedio, .vendasSemanais{
+        width: 70vw;
+        margin-top: 3vh;
+        padding: 10%;
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .ticketMedioPreco{
+        font-size: 40px;
+      }
+}
+
+@media only screen and (max-width: 1280px){
+    .ticketMedioPreco{
+        font-size: 60px;
+      }
+}

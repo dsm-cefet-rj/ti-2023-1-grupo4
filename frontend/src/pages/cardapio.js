@@ -63,28 +63,34 @@ function ModalComponent ({isOpen, overlayClassName, className}) {
             overlayClassName={overlayClassName}
             className={className}
         > 
-            <div className='modal-topo'>
-                <button onClick={closeModal} className='btn-voltar'> 
-                    <FontAwesomeIcon icon={faArrowLeft} />
-                </button>
-                <h2>{ModalInfo?.nome}</h2>
-            </div>
-            <div className='modal-itens'>
-                <div className='modal-descricao'> 
-                {/* essa aqui fica na esquerda, com flex-direction column */}
-                {
-                    ModalInfo.tipo === 'combo'
-                    ? ModalInfo.itens.map(v => (<p>{v}</p>))
-                    : (<p>1x {ModalInfo.nome}</p>)
-                }
-                <p>{ModalInfo.preco}</p>
-                </div>
-                <div className='modal-img'>
-                    {/* essa aqui fica na direita, só com a img */}
-                <img src={logo} alt="logo" className='logoModal'/>
-                </div>
-            </div>
-            <Button texto="Adicionar" className='modal-add' onClick={adicionarItem}/>
+            <header className='modalHeader'>
+                <div className='modal-topo'>
+                    <button onClick={closeModal} className='btn-voltar'> 
+                        <FontAwesomeIcon icon={faArrowLeft} className='icone-seta'/>
+                    </button>
+                    <h2>{ModalInfo?.nome}</h2>
+                </div> 
+            </header>
+            <main>
+              <div className='modal-itens'>
+                  <div className='modal-descricao'> 
+                    {/* essa aqui fica na esquerda, com flex-direction column */}
+                    {
+                        ModalInfo.tipo === 'combo'
+                        ? ModalInfo.itens.map(v => (<p>{v}</p>))
+                        : (<p>1x {ModalInfo.nome}</p>)
+                    }
+                    <p>{ModalInfo.preco}</p>
+                    </div>
+                    <div className='modal-img'>
+                        {/* essa aqui fica na direita, só com a img */}
+                        <img src={logo} alt="logo" className='logoModal'/>
+                    </div>
+              </div>
+            </main>
+            <footer className='footerModal'>
+              <Button texto="Adicionar" className='modal-add' onClick={adicionarItem}/>
+            </footer>
         </Modal>
     )
 }

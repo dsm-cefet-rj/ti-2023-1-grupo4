@@ -1,5 +1,4 @@
 .principalDashboard{
-  position: fixed;
   height: 100%;
 }
 
@@ -11,72 +10,149 @@
 }
 
 .pdd{
-    height: 372px;
-    width: 75vw;
-    background-color: var(--cinza-claro-padrao);
-    border-radius: 11px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
-}
-
-.relatorios{
   display: flex;
-  margin-top: 2%;
+  height: 372px;
+  width: 81vw;
+  background-color: var(--cinza-claro-padrao);
+  border-radius: 11px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
 }
 
-.itensMaisVendidos, .ticketMedio, .vendasSemanais{
-    width: 25vw;
-    height: 372px;
-    background-color: var(--cinza-claro-padrao);  
-    border-radius: 11px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
-    padding: 2%;
-    font-weight: bold;
+.pdd hr{
+  width: 319px;
+  color: white;
 }
 
-.itensMaisVendidos h2{
+.pdd h3{
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.pdd h2{
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.add-item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25%;
+  border-right: solid var(--cinza-detalhe) 2px;
+
+}
+
+.add-item Button{
+  width: 80%;
+  height: 126px;
+
+  margin-top: 18px;
+  margin-left: 15px;
+
+  font-weight: bold;
+  font-size: calc(16px + 0.7vw);
+}
+
+.pdd-recebidos, .pdd-preparar{
+  padding-right: 14px;
+  margin-left: 14px;
+  width: 25%;
+  border-right: solid var(--cinza-detalhe) 2px;
+  overflow-y: scroll;
+}
+
+.pdd-recebidos-lista {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  margin-left: 10px;
+}
+
+.pdd-recebidos-lista p{
+  margin-left: 10px;
+}
+
+.pdd-recebidos-lista-itens{
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.pdd-recebidos-lista-button{
+  display: flex;
+}
+
+.pdd-recebidos-lista-button button{
+  width: 45px;
+  height: 45px;
+
+  border-radius: 8px;
+  border: none;
+  margin-right: 5px;
+  margin-top: 10px;
+
   background-image: linear-gradient(
     to right,
     var(--amarelo-padrao),
     var(--laranja-padrao)
   );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  display: inline-block;
 }
 
-.itensMaisVendidos h3{
-  font-size: 28px;
-  color: var(--laranja-padrao);
+.pdd-recebidos-lista-button button:hover{
+  background: var(--cinza-detalhe);
+  cursor: pointer;
 }
 
-.ticketMedio p{
-  background-image: linear-gradient(
-    to right,
-    var(--amarelo-padrao),
-    var(--laranja-padrao)
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  display: inline-block;
+
+
+.pdd-preparar-lista{
+  display: flex;
+  color: white;
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-bottom: 10px;
 }
 
-.vendasSemanais p{
-  background-image: linear-gradient(
-    to right,
-    var(--amarelo-padrao),
-    var(--laranja-padrao)
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  display: inline-block;
+.pdd-preparar-lista p{
+  margin-left: 10px;
 }
 
-.itensMaisVendidos, .ticketMedio{
-  margin-right: 3%;
+.pdd-preparar-lista-itens{
+  display: flex;
+  flex-direction: column;
 }
+
+.pdd-preparar-lista-button Button{
+  width: 150px;
+  height: 45px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.pdd-entregues{
+  overflow-y: scroll;
+  padding-right: 14px;
+  width: 25%;
+  margin-left: 14px;
+}
+
+.pdd-entregues-lista{
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  margin-top: 20px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.pdd-entregues-lista-itens{
+  display: flex;
+  padding-right: 10px;
+}
+
+
 
 .principalDashboard h1{
     color: white;
@@ -84,29 +160,86 @@
     font-size: 30px;
 }
 
-// .itensMaisVendidos{
-//     color: var(--amarelo-padrao);
 
-// }
 
-.ticketMedio{
-    font-size: 80px;
-    font-weight: bold;
+@media only screen and (max-width: 1280px){
+  .pdd h2{
+    font-size: 18px;
+  }
+
+  .pdd hr{
+    width: 200px;
+  }
+
+  .pdd-recebidos-lista {
+    display: flex;
+    font-size: 12px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .pdd-recebidos-lista-itens{
+    margin-right: 40px;
+  }
+
+  .pdd-recebidos-lista-button button{
+    width: 35px;
+    height: 35px;
+  }
+  
+  .pdd-preparar-lista{
+    display: flex;
+    font-size: 12px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .pdd-preparar-lista-button Button{
+    width: 100px;
+    font-size: 10px;
+    font-weight: bolder;
+  }
 }
 
-.vendasSemanais{
-    font-size: 80px;
+@media only screen and (max-width: 1090px){
+  .pdd h2{
+    font-size: 16px;
+  }
+
+  .pdd hr{
+    width: 160px;
+  }
 }
 
-.ticketMedioPreco, .vendasSemanaisQtd{
-  padding-top: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
+@media only screen and (max-width: 1000px){
+
+  .pdd{
+    flex-direction: column;
+    min-height: fit-content;
+
+    width: 80vw;
+    height: fit-content;
+  }
+
+  .add-item, .pdd-recebidos, .pdd-entregues, .pdd-preparar{
+    width: 100%;
+    overflow-y: hidden;
+    border: none;
+  }
+
+  .add-item Button{
+    width: 50vw;
+  }
+
+  .pdd-preparar-lista, .pdd-recebidos-lista, .pdd-entregues-lista{
+    display: flex;
+    justify-content: center;
+  }
+
+  .pdd-preparar-lista-button Button{
+    width: 30vw;
+    font-size: 14px;
+  }
 }
 
-.itensMaisVendidosLista{
-  padding-top: 20px;
-  display: flex;
-  justify-content: space-between;
-}

@@ -10,6 +10,10 @@ h2 {
 }
 
 .cart-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
   border: none;
   background-color: var(--cinza-header);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -162,5 +166,11 @@ h2 {
 @media only screen and (max-width: 410px) {
   .payInput select {
     width: 270px;
+  }
+}
+
+@media only screen and (max-height: 640px) {
+  .cart-container{
+    height: 60vh;
   }
 }

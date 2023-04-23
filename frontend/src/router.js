@@ -8,7 +8,6 @@ import Perfil from "./pages/perfil";
 import Carrinho from "./pages/carrinho";
 import StatusPedido from "./pages/statuspedido";
 import Dashboard from "./pages/dashboard"
-import Momodal from "./pages/modal";
 
 export default function AppRouter() {
   return (
@@ -23,7 +22,6 @@ export default function AppRouter() {
         <Route path="/carrinho" element={<Carrinho />} />
         <Route path="/statuspedido" element={<StatusPedido />} />
         <Route path="/dashboard" element={<Dashboard/>}/>
-        <Route path="/modal" element={<Momodal />} />
       </Routes>
     </Router>
   );

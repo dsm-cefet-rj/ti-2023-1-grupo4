@@ -22,7 +22,7 @@
   justify-content: space-around;
 
   width: 50vw;
-  height: 30vh;
+  height: 35vh;
   padding: 20px;
 
   background-color: var(--cinza-header);
@@ -116,4 +116,54 @@ button {
 .logoModal {
   width: 100px;
   height: 100px;
+}
+
+.modalHeader{
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.footerModal{
+  margin-top: 10px;
+  margin-right: 4px;
+}
+
+@media only screen and (max-width: 360px){
+  .btn-voltar{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .icone-seta{
+    width: 15px;
+    height: 15px;
+  }
+
+  .modal-content{
+    height: 35vh;
+  }
+
+  .modal-descricao p{
+    font-size: small;
+  }
+
+  .modal-img img{
+    width: 80px;
+    height: 80px;
+  }
+
+  .footerModal{
+    margin-top: 10px;
+    margin-right: 4px;
+  }
+}
+
+@media only screen and (max-height: 725px){
+  .modal-content{
+    height: 40vh;
+  }
+
 }

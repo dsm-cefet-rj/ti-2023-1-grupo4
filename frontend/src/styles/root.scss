@@ -37,6 +37,10 @@
   -webkit-text-fill-color: transparent;
 }
 
+a { // tirar o sublinhado roxo de links
+  text-decoration: none;
+}
+
 * {
   font-family: "Exo 2", sans-serif;
 }

@@ -94,9 +94,9 @@ export default function perfil() {
           </div>
           {!edit ? (
             <div id="submit-wrapper">
-              <button className="buttonStyle" onClick={() => setEdit(!edit)}>
+              {/* <button className="buttonStyle" onClick={() => setEdit(!edit)}>
                 Editar perfil
-              </button>
+              </button> */}
             </div>
           ) : (
             <div id="submit-wrapper">

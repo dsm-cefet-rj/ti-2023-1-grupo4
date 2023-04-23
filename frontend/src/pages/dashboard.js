@@ -1,10 +1,12 @@
 import React from 'react'
 import Cabecalho from '../components/CabecalhoAdm/cabecalhoadm'
 import '../styles/dashboard.scss'
+import '../styles/dashboardRel.scss'
 import Button from "../components/Botao/button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark, faCheck, faLoader, faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 export default function dashboard() {
-
   const list = [
     {
       name: 'Combo 1',
@@ -32,8 +34,88 @@ export default function dashboard() {
     }
   ];
 
-
-
+  const pedidos = [
+    {
+      name: 'João Terencio',
+      itens:[
+        'Combo 1 ',
+        'combo 2 ',
+        'Pudim'
+      ]
+    },
+    {
+      name: 'João Terencio',
+      itens:[
+        'Combo 1 ',
+        'combo 2 ',
+        'Pudim'
+      ]
+    },
+    {
+      name: 'João Terencio',
+      itens:[
+        'Combo 1 ',
+        'combo 2 ',
+        'Pudim'
+      ]
+    },
+    {
+      name: 'João Terencio',
+      itens:[
+        'Combo 1 ',
+        'combo 2 ',
+        'Pudim'
+      ]
+    },
+    {
+      name: 'João Terencio',
+      itens:[
+        'Combo 1 ',
+        'combo 2 ',
+        'Pudim'
+      ]
+    },
+    {
+      name: 'João Terencio',
+      itens:[
+        'Combo 1 ',
+        'combo 2 ',
+        'Pudim'
+      ]
+    },
+    {
+      name: 'João Terencio',
+      itens:[
+        'Combo 1 ',
+        'combo 2 ',
+        'Pudim'
+      ]
+    },
+    {
+      name: 'João Terencio',
+      itens:[
+        'Combo 1 ',
+        'combo 2 ',
+        'Pudim'
+      ]
+    },
+    {
+      name: 'João Terencio',
+      itens:[
+        'Combo 1 ',
+        'combo 2 ',
+        'Pudim'
+      ]
+    },
+    {
+      name: 'João Terencio',
+      itens:[
+        'Combo 1 ',
+        'combo 2 ',
+        'Pudim'
+      ]
+    }
+  ];
 
   return (
     <div className='principalDashboard'>
@@ -43,17 +125,60 @@ export default function dashboard() {
       <main className='containerDashboard'>
           <div className='pdd'>
             <div className='add-item'>
-              <h1>jajajaj</h1>
-              <Button></Button>
+              <h2>Modificar cardápio: </h2>
+              <hr/>
+              <Button texto="Adicionar item"></Button>
+              <Button texto="Remover item"></Button>
             </div>
             <div className='pdd-recebidos'>
-
+              <h2>Pedidos recebidos: </h2>
+              <hr/>
+              <ul>
+              {pedidos.map((item) =>
+                <li className='pdd-recebidos-lista'>
+                    <div className='pdd-recebidos-lista-itens'>
+                      <h3>{item.name}</h3>
+                      <p>{item.itens}</p>
+                    </div>
+                    <div className='pdd-recebidos-lista-button'>
+                      <button> <FontAwesomeIcon icon={faXmark} style={{color: "#000000",}} /> </button>
+                      <button> <FontAwesomeIcon icon={faCheck} style={{color: "#000000",}} /> </button>
+                    </div>
+                  </li>
+                  
+              )}
+              </ul>
             </div>
             <div className='pdd-preparar'>
-
+              <h2>Pedidos para preparar: </h2>
+              <hr/>
+              <ul>
+              {pedidos.map((item) =>
+                <li className='pdd-preparar-lista'>
+                    <div className='pdd-preparar-lista-itens'>
+                      <h3>{item.name}</h3>
+                      <p>{item.itens}</p>
+                    </div>
+                    <div className='pdd-preparar-lista-button'>
+                      <Button texto="Sair para entrega"></Button>
+                  </div>
+                  </li>
+              )}
+              </ul>
             </div>
-            <div className='pdd-recebidos'>
-
+            <div className='pdd-entregues'>
+              <h2>Pedidos entregues: </h2>
+              <hr/>
+              <ul>
+              {pedidos.map((item) =>
+                <li className='pdd-entregues-lista'>
+                    <div className='pdd-entregues-lista-itens'>
+                      <h3>{item.name}</h3>
+                      <FontAwesomeIcon icon={faCheck} style={{color: "#0FF190",}}/>
+                    </div>
+                  </li>
+              )}
+              </ul>
             </div>
           </div>
           <div className='relatorios'>
