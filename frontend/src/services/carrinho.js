@@ -1,4 +1,4 @@
-export function inicilizaCarrinho(){
+export function inicializaCarrinho(){
   sessionStorage.setItem("fastByteCarrinho", JSON.stringify({itens: []}));
 }
 

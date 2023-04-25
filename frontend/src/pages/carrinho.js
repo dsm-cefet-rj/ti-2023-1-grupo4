@@ -6,7 +6,8 @@ import Button from "../components/Botao/button";
 import { useRecoilState } from "recoil";
 import "../styles/carrinho.scss"; // importando o arquivo de estilos CSS
 import { CarrinhoAtom } from "../states/carrinho";
-import { setItensCarrinho } from "../services/carrinho";
+import { inicializaCarrinho, setItensCarrinho } from "../services/carrinho";
+import { addPedido } from "../services/backend";
 
 
 export default function Carrinho() {
@@ -24,6 +25,7 @@ export default function Carrinho() {
   };
 
   const handlePaymentOptionChange = (event) => {
+    console.log(event.target.value)
     setPaymentOption(event.target.value);
   };
 
@@ -41,11 +43,15 @@ export default function Carrinho() {
   };
 
   const confirmOrder = () => {
+    console.log(paymentOption, carrinho)
     if (carrinho.length === 0) {
       alert("O carrinho está vazio.");
-    } else if (paymentOption === null) {
+    } else if (!paymentOption) {
       alert("Por favor, escolha uma forma de pagamento.");
     } else {
+      addPedido({carrinho, payment:paymentOption, endereco:JSON.parse(sessionStorage.getItem('fast_byte_token'))['endereco'], email:JSON.parse(sessionStorage.getItem('fast_byte_token'))['userName']})
+      inicializaCarrinho();
+      setCarrinha([]);
       alert("Pedido confirmado!");
     }
   };
@@ -83,7 +89,7 @@ export default function Carrinho() {
             <select id="opcoes-pagamento" name="opcoes-pagamento"
             onChange={handlePaymentOptionChange}
             >
-              <option value={null}>Selecione a forma de pagamento</option>
+              <option value={''}>Selecione a forma de pagamento</option>
               <option value="cartao">Cartão</option>
               <option value="dinheiro">Dinheiro</option>
               <option value="pix">PIX</option>
@@ -92,6 +98,7 @@ export default function Carrinho() {
           </div>
           <div className="button">
             <Button
+              style={{opacity:(carrinho.length > 0 && !!paymentOption) ? '1' : '0.5'}}
               className="confirm-button"
               onClick={confirmOrder}
               texto="Confirmar"

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Cabecalho from '../components/CabecalhoAdm/cabecalhoadm'
 import '../styles/dashboard.scss'
 import '../styles/dashboardRel.scss'
@@ -6,6 +6,7 @@ import Button from "../components/Botao/button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faCheck, faLoader, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { GetPedidos } from '../services/backend';
 
 
 export default function dashboard() {
@@ -36,88 +37,22 @@ export default function dashboard() {
     }
   ];
 
-  const pedidos = [
-    {
-      name: 'João Terencio',
-      itens:[
-        'Combo 1 ',
-        'combo 2 ',
-        'Pudim'
-      ]
-    },
-    {
-      name: 'João Terencio',
-      itens:[
-        'Combo 1 ',
-        'combo 2 ',
-        'Pudim'
-      ]
-    },
-    {
-      name: 'João Terencio',
-      itens:[
-        'Combo 1 ',
-        'combo 2 ',
-        'Pudim'
-      ]
-    },
-    {
-      name: 'João Terencio',
-      itens:[
-        'Combo 1 ',
-        'combo 2 ',
-        'Pudim'
-      ]
-    },
-    {
-      name: 'João Terencio',
-      itens:[
-        'Combo 1 ',
-        'combo 2 ',
-        'Pudim'
-      ]
-    },
-    {
-      name: 'João Terencio',
-      itens:[
-        'Combo 1 ',
-        'combo 2 ',
-        'Pudim'
-      ]
-    },
-    {
-      name: 'João Terencio',
-      itens:[
-        'Combo 1 ',
-        'combo 2 ',
-        'Pudim'
-      ]
-    },
-    {
-      name: 'João Terencio',
-      itens:[
-        'Combo 1 ',
-        'combo 2 ',
-        'Pudim'
-      ]
-    },
-    {
-      name: 'João Terencio',
-      itens:[
-        'Combo 1 ',
-        'combo 2 ',
-        'Pudim'
-      ]
-    },
-    {
-      name: 'João Terencio',
-      itens:[
-        'Combo 1 ',
-        'combo 2 ',
-        'Pudim'
-      ]
-    }
-  ];
+  const [pedidos, setPedidos] = useState(GetPedidos());
+
+  useEffect(() => {
+    localStorage.setItem('fastbyte-pedidos' ,JSON.stringify({pedidos}))
+  }, [pedidos])
+
+  function DescFN(item) {
+    return JSON.stringify(item.carrinho.map(v => v.nome)).replace(/(\[)|(\])|(\")|(\')/g, '');
+  }
+
+  function ItemUpdateStatus (index, status) {
+    let p = [...pedidos];
+    p[index]['status'] = status;
+
+    setPedidos(p);
+  }
 
   return (
     <div className='principalDashboard'>
@@ -141,15 +76,18 @@ export default function dashboard() {
               <h2>Pedidos recebidos: </h2>
               <hr/>
               <ul>
-              {pedidos.map((item) =>
+              {pedidos
+              .map((v, i) => ({...v, fn1:() => ItemUpdateStatus(i, -1), fn2:() => ItemUpdateStatus(i, 1)}))
+              .filter(v => v.status === 0)
+              .map((item) =>
                 <li className='pdd-recebidos-lista'>
                     <div className='pdd-recebidos-lista-itens'>
-                      <h3>{item.name}</h3>
-                      <p>{item.itens}</p>
+                      <h3>{item.email}</h3>
+                      <p>{DescFN(item)}</p>
                     </div>
                     <div className='pdd-recebidos-lista-button'>
-                      <button> <FontAwesomeIcon icon={faXmark} style={{color: "#000000",}} /> </button>
-                      <button> <FontAwesomeIcon icon={faCheck} style={{color: "#000000",}} /> </button>
+                      <button  onClick={item.fn1}> <FontAwesomeIcon icon={faXmark} style={{color: "#000000",}} /> </button>
+                      <button onClick={item.fn2}> <FontAwesomeIcon icon={faCheck} style={{color: "#000000",}} /> </button>
                     </div>
                   </li>
                   
@@ -160,14 +98,17 @@ export default function dashboard() {
               <h2>Pedidos para preparar: </h2>
               <hr/>
               <ul>
-              {pedidos.map((item) =>
+              {pedidos
+              .map((v, i) => ({...v, fn1:() => ItemUpdateStatus(i, 2)}))
+              .filter(v => v.status === 1)
+              .map((item) =>
                 <li className='pdd-preparar-lista'>
                     <div className='pdd-preparar-lista-itens'>
-                      <h3>{item.name}</h3>
-                      <p>{item.itens}</p>
+                      <h3>{item.email}</h3>
+                      <p>{JSON.stringify(item.carrinho.map(v => v.nome)).replace(/(\[)|(\])|(\")|(\')/g, '')}</p>
                     </div>
                     <div className='pdd-preparar-lista-button'>
-                      <Button texto="Sair para entrega"></Button>
+                      <Button texto="Sair para entrega" onClick={item.fn1}></Button>
                   </div>
                   </li>
               )}
@@ -177,11 +118,16 @@ export default function dashboard() {
               <h2>Pedidos entregues: </h2>
               <hr/>
               <ul>
-              {pedidos.map((item) =>
+              {pedidos
+              .filter(v => v.status === 2)
+              .map((item) =>
                 <li className='pdd-entregues-lista'>
                     <div className='pdd-entregues-lista-itens'>
-                      <h3>{item.name}</h3>
-                      <FontAwesomeIcon icon={faCheck} style={{color: "#0FF190",}}/>
+                    <div className='pdd-preparar-lista-itens'>
+                      <h3>{item.email}</h3>
+                      <p>{JSON.stringify(item.carrinho.map(v => v.nome)).replace(/(\[)|(\])|(\")|(\')/g, '')}</p>
+                    </div>
+                      <FontAwesomeIcon size={'2x'} icon={faCheck} style={{color: "#0FF190", marginLeft:'5px'}}/>
                     </div>
                   </li>
               )}

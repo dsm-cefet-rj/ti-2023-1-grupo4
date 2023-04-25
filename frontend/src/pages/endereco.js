@@ -7,7 +7,7 @@ import { useRecoilState } from "recoil";
 import { Formik, Field, Form } from "formik";
 import { CadastroAtom } from "../states/cadastro";
 import { useEffect } from "react";
-import { inicilizaCarrinho } from "../services/carrinho";
+import { inicializaCarrinho } from "../services/carrinho";
 import { BufferComponent } from "../components/Auth";
 
 
@@ -61,7 +61,7 @@ export default function Endereco() {
         })
       );
       
-      inicilizaCarrinho();
+      inicializaCarrinho();
     } else {
       localStorage.setItem(
         "fast_byte_usuarios",

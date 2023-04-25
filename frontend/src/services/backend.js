@@ -1,3 +1,5 @@
+import {inicializaCarrinho} from './carrinho'
+
 export function StartUsersFn(){
   let users = localStorage.getItem("fast_byte_usuarios");
   if (!users) {
@@ -117,7 +119,7 @@ export function FinishRegisterFn({email, password, userName, enderecoForm}){
         endereco:enderecoForm
       })
     );
-    inicilizaCarrinho();
+    inicializaCarrinho();
   } else {
     localStorage.setItem(
       "fast_byte_usuarios",
@@ -133,7 +135,7 @@ export function FinishRegisterFn({email, password, userName, enderecoForm}){
         ],
       })
     );
-    inicilizaCarrinho();
+    inicializaCarrinho();
 
 
     sessionStorage.setItem(
@@ -146,4 +148,34 @@ export function FinishRegisterFn({email, password, userName, enderecoForm}){
       })
     );
   }
+}
+
+export function GetPedidos(user){
+  let pedidos = localStorage.getItem('fastbyte-pedidos');
+  if(!pedidos){
+    return [];
+  }
+  
+  pedidos = JSON.parse(pedidos)['pedidos'];
+
+  if(!!user){
+    return pedidos.filter(v => {
+      v.email === user;
+    })
+  }else{
+    return pedidos
+  }
+}
+
+export function addPedido({carrinho, payment, endereco, email}){
+  let pedidos = localStorage.getItem('fastbyte-pedidos');
+  if(!pedidos){
+    localStorage.setItem('fastbyte-pedidos', JSON.stringify({pedidos:[{carrinho, payment, status:0, endereco, email}]}))
+    return {status:true};
+  }
+  
+  pedidos = JSON.parse(pedidos)['pedidos'];
+  pedidos.push({carrinho, payment, status:0, endereco, email});
+
+  localStorage.setItem('fastbyte-pedidos', JSON.stringify({pedidos}))
 }

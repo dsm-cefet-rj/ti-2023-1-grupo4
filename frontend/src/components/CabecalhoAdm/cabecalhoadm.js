@@ -8,6 +8,12 @@ import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 
 export default function Cabecalho() {
+
+  function logoffFn() {
+    sessionStorage.removeItem('fast_byte_token');
+    window.location.href = '/'
+  }
+
   return (
     <div className="containerAdm">
       <header className="cabecalhoAdm">
@@ -15,6 +21,10 @@ export default function Cabecalho() {
           <img src={logo} alt="Logo" />
           <h1>FastByte</h1>
         </div>  
+        
+      <Link to={"#"} style={{marginRight:'10px'}}>
+        <button className="menu-btn text-gradient menu-item" onClick={logoffFn}>Sair</button>
+      </Link>
       </header>
     </div>
   );
