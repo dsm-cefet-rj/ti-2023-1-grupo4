@@ -12,6 +12,7 @@ import logo from "../assets/images/logo.png";
 import Modal from "react-modal";
 import { setItensCarrinho } from '../services/carrinho';
 import { CarrinhoAtom } from '../states/carrinho';
+import AuthComponent from '../components/Auth';
 
 
 export default function Cardapio(){
@@ -23,6 +24,7 @@ export default function Cardapio(){
     
     return(
         <div className='cardapioPrincipal'>
+            <AuthComponent redirect={'/'}/>
             <ModalComponent isOpen={!!item} overlayClassName="modal-overlay" className="modal-content"/>
             <div className='sticky-pos'>
                 <Cabecalho/>

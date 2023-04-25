@@ -8,6 +8,12 @@ import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 
 export default function Cabecalho() {
+
+  function logoffFn() {
+    sessionStorage.removeItem('fast_byte_token');
+    window.location.href = '/'
+  }
+
   return (
     <div className="flex-column">
       <header className="cabecalho">
@@ -29,8 +35,8 @@ export default function Cabecalho() {
                 Status do Pedido
               </button>
             </Link>
-            <Link to={"/"}>
-              <button className="menu-btn text-gradient menu-item">Sair</button>
+            <Link to={"#"}>
+              <button className="menu-btn text-gradient menu-item" onClick={logoffFn}>Sair</button>
             </Link>
           </div>
           <button
@@ -70,8 +76,8 @@ export default function Cabecalho() {
             Status do Pedido
           </button>
         </Link>
-        <Link to={"/"} className="menu-item">
-          <button className="menu-btn-mobile text-gradient">Sair</button>
+        <Link to={"#"} className="menu-item">
+          <button className="menu-btn-mobile text-gradient" onClick={logoffFn}>Sair</button>
         </Link>
       </div>
     </div>

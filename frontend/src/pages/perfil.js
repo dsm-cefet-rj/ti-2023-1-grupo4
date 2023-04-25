@@ -9,6 +9,8 @@ export default function perfil() {
 
   const [form, setForm] = useState({});
 
+  const [token, setToken] = useState(JSON.parse(sessionStorage.getItem('fast_byte_token')))
+
   return (
     <div>
       <div className="sticky-pos">
@@ -21,19 +23,19 @@ export default function perfil() {
             <div className="inputsContainer">
               <InputField
                 label={"Nome de Usuário"}
-                value={"Marcelo"}
+                value={token.userName}
                 type={"text"}
                 editable={edit}
               />
               <InputField
                 label={"E-mail"}
-                value={"marcelo.nóbreghas@gmail.com"}
+                value={token.email}
                 type={"email"}
                 editable={edit}
               />
               <InputField
                 label={"Senha"}
-                value={"Texto não editável"}
+                value={'0'.repeat(6 + Math.round(Math.random() * 4))}
                 type={"password"}
                 editable={edit}
               />
@@ -44,32 +46,32 @@ export default function perfil() {
             <div className="inputsContainerTwo">
               <InputField
                 label={"CEP"}
-                value={"26410-280"}
+                value={token?.endereco?.cep || ''}
                 type={"text"}
                 editable={edit}
               />
               <InputField
                 label={"Rua"}
-                value={"Rua Florença"}
+                value={token?.endereco?.logradouro || ''}
                 type={"text"}
                 editable={edit}
               />
               <InputField
                 label={"Bairro"}
-                value={"Cidade Jardim Marajoara"}
+                value={token?.endereco?.bairro || ''}
                 type={"text"}
                 editable={edit}
               />
               <div className="complementoBox">
                 <InputField
                   label={"Número"}
-                  value={"55"}
+                  value={token?.endereco?.numero || ''}
                   type={"text"}
                   editable={edit}
                 />
                 <InputField
                   label={"Complemento"}
-                  value={"Casa"}
+                  value={token?.endereco?.complemento || ''}
                   type={"text"}
                   editable={edit}
                 />
@@ -77,13 +79,13 @@ export default function perfil() {
 
               <InputField
                 label={"Cidade"}
-                value={"Japeri"}
+                value={token?.endereco?.cidade || ''}
                 type={"text"}
                 editable={edit}
               />
               <InputField
                 label={"Estado"}
-                value={"RJ"}
+                value={token?.endereco?.uf || ''}
                 type={"text"}
                 editable={edit}
               />

@@ -10,8 +10,15 @@ import StatusPedido from "./pages/statuspedido";
 import Dashboard from "./pages/dashboard"
 import Removeritem from "./pages/removeritem";
 import Adicionaritem from "./pages/adicionaritem";
+import { useEffect } from "react";
+import { StartUsersFn } from "./services/backend";
 
 export default function AppRouter() {
+
+  useEffect(() => {
+    StartUsersFn();
+  }, [])
+
   return (
     <Router>
       <Routes>

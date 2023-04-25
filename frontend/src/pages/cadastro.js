@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import { Link } from "react-router-dom";
 import { CadastroAtom } from "../states/cadastro";
+import { StartRegisterFn } from "../services/backend";
 
 export default function Cadastro() {
   const [cadastroForm, setCadastroForm] = useRecoilState(CadastroAtom);
@@ -18,22 +19,13 @@ export default function Cadastro() {
   function handleSubmit(event) {
     event.preventDefault();
 
-    if (
-      !cadastroForm.email ||
-      !cadastroForm.password ||
-      !cadastroForm.userName ||
-      !cadastroForm.confirmPassword
-    ) {
-      alert("Por favor, preencha os campos obrigatórios");
+    const data = StartRegisterFn(cadastroForm);
+
+    if(!data.status){
+      alert(data.message);
       return;
-    } else {
-      if (cadastroForm.password !== cadastroForm.confirmPassword) {
-        alert("As senhas não conferem!");
-        return;
-      }
-
+    }else{
       sessionStorage.setItem("cadastroBuffer", JSON.stringify(cadastroForm));
-
       window.location.href = "/endereco";
     }
   }

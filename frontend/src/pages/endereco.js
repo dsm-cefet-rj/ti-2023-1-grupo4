@@ -8,6 +8,7 @@ import { Formik, Field, Form } from "formik";
 import { CadastroAtom } from "../states/cadastro";
 import { useEffect } from "react";
 import { inicilizaCarrinho } from "../services/carrinho";
+import { BufferComponent } from "../components/Auth";
 
 
 export default function Endereco() {
@@ -30,8 +31,6 @@ export default function Endereco() {
         (accumulator, currentValue) => !!accumulator && !!currentValue,
         initialValue
       )
-      console.log(initialValue)
-      console.log(enderecoForm)
     if (initialValue) {
       alert("Campo obrigatório não preenchido!");
       return;
@@ -61,6 +60,7 @@ export default function Endereco() {
           tipo: "usuario",
         })
       );
+      
       inicilizaCarrinho();
     } else {
       localStorage.setItem(
@@ -120,7 +120,8 @@ export default function Endereco() {
   }
 
   return (
-    <div className="enderecoFundo">
+    <div className="enderecoFundo">]
+      <BufferComponent redirect={'/cadastro'}/>
       <div className="enderecoPrincipal">
         <div className="enderecoTitulo">
           <h1>FastByte</h1>

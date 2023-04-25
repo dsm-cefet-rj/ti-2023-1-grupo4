@@ -4,6 +4,8 @@ import logo from "../assets/images/logo.png";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { inicilizaCarrinho } from "../services/carrinho";
+import { LoginFn } from "../services/backend";
+import { useRecoilState } from "recoil";
 //import { useHistory } from "react-router-dom";
 
 export default function Login() {
@@ -21,36 +23,12 @@ export default function Login() {
   function handleSubmit(event) {
     event.preventDefault();
 
-    if (!email || !password) {
-      alert("Por favor, preencha o email e a senha.");
-      return;
-    } else {
-      let users = localStorage.getItem("fast_byte_usuarios");
-      if (!!users) {
-        users = JSON.parse(users);
-      } else {
-        alert("Email ou senha incorretos.");
-        return;
-      }
-
-      let hasUser = users["usuarios"].find((v) => {
-        return v.email === email && v.password === password;
-      });
-
-      if (!!hasUser) {
-        sessionStorage.setItem(
-          "fast_byte_token",
-          JSON.stringify({
-            email: hasUser.email,
-            tipo: hasUser.tipo,
-            userName: hasUser.userName,
-          }));
-        inicilizaCarrinho();
-      } else {
-        alert("Email ou senha incorretos.");
-        return;
-      }
+    const data = LoginFn({email, password});
+    if(data.status){
+      inicilizaCarrinho();
       window.location.href = "/cardapio";
+    }else{
+      alert(data.message);
     }
   }
 
