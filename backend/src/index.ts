@@ -20,7 +20,7 @@ mongoose.connect(process.env.MONGO_URI || '').then(() => console.log('MongoDB At
 
 
 // Rotas
-const routesPath = path.join(__dirname, 'Routes');
+const routesPath = path.join(__dirname, 'routes');
 
 // ler todos os arquivos na pasta Routes
 const routeFiles = readdirSync(routesPath);
@@ -30,7 +30,7 @@ const router = Router();
 
 // adicionar todas as rotas presentes nos arquivos encontrados
 routeFiles.forEach((file) => {
-  const route = require(`./Routes/${file}`).default;
+  const route = require(`./routes/${file}`).default;
   router.use(route);
 });
 
