@@ -1,11 +1,13 @@
 import { Request, Response } from 'express';
 import Item from '../models/Item';
+import Multer from 'multer';
 
 class ItemController {
   public async create(req: Request, res: Response): Promise<Response> {
     try {
       const { name, price, quantity } = req.body;
-      const item = new Item({ name, price, quantity });
+      const file = req.file?.buffer || null;
+      const item = new Item({ name, price, quantity, file });
       const newItem = await item.save();
       return res.status(201).json(newItem);
     } catch (error) {
@@ -39,7 +41,8 @@ class ItemController {
     try {
       const { id } = req.params;
       const { name, price, quantity } = req.body;
-      const item = await Item.findByIdAndUpdate(id, { name, price, quantity }, { new: true });
+      const file = req.file?.buffer || null;
+      const item = await Item.findByIdAndUpdate(id, { name, price, quantity, file }, { new: true });
       if (!item) {
         return res.status(404).json({ error: 'Item not found.' });
       }
