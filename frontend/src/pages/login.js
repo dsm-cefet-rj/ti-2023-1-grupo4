@@ -20,10 +20,10 @@ export default function Login() {
     setPassword(event.target.value);
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
-    const data = LoginFn({email, password});
+    const data = await LoginFn({email, password});
     if(data.status){
       inicializaCarrinho();
       if(email === 'admin@fastbyte.com'){

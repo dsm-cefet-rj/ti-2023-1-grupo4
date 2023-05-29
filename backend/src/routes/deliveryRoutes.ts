@@ -3,10 +3,10 @@ import DeliveryController from '../controllers/DeliveryController';
 
 const deliveryRouter = Router();
 
-deliveryRouter.post('/delivery', DeliveryController.create);
-deliveryRouter.get('/delivery', DeliveryController.getAll);
-deliveryRouter.get('/delivery/:id', DeliveryController.getById);
-deliveryRouter.put('/delivery/:id', DeliveryController.update);
-deliveryRouter.delete('/delivery/:id', DeliveryController.delete);
+deliveryRouter.post('/', DeliveryController.create);
+deliveryRouter.get('/', DeliveryController.getAll);
+deliveryRouter.get('/:id', DeliveryController.getById);
+deliveryRouter.put('/:id', DeliveryController.update);
+deliveryRouter.delete('/:id', DeliveryController.delete);
 
 export default deliveryRouter;

@@ -4,10 +4,10 @@ const auth = require("../middleware/Auth.ts");
 
 const user = Router();
 
-user.post('/users', UserController.createUser);
-user.get('/users', UserController.getUsers);
-user.get('/users/:id', auth, UserController.findOneUser);
-user.put('/users/:id', auth, UserController.updateUser);
-user.delete('/users/:id',auth, UserController.deleteUser);
+user.post('/', UserController.createUser);
+user.get('/', UserController.getUsers);
+user.get('/:id', auth, UserController.findOneUser);
+user.put('/:id', auth, UserController.updateUser);
+user.delete('/:id',auth, UserController.deleteUser);
   
 export default user;

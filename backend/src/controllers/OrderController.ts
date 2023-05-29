@@ -4,8 +4,8 @@ import Order from '../models/Order';
 class OrderController {
   public async create(req: Request, res: Response): Promise<Response> {
     try {
-      const { user, delivery, items, paid } = req.body;
-      const order = new Order({ user, delivery, items, paid });
+      const { user, delivery, items } = req.body;
+      const order = new Order({ user, delivery, items });
       const newOrder = await order.save();
       return res.status(201).json(newOrder);
     } catch (error) {

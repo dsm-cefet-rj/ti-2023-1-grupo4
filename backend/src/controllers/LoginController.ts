@@ -1,7 +1,5 @@
 import { Request, Response } from 'express';
-const loginService = require("../services/loginService.ts")
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt')
+import loginService from "../services/loginService";
 
 class LoginController{
 
@@ -9,10 +7,14 @@ class LoginController{
         const {email, password} = req.body;
         try {
             const token = await loginService.login(email, password); // gera um token de acesso.
-            const {id} = jwt.decode(token)
-            return res.status(200).json({"id": id ,"token": token}); // retorno do token
+            res.cookie('fastbyte_token', token, {
+                httpOnly:true,
+                path:'/',
+                maxAge: 2 * 24 * 60 * 60 * 1000
+            });
+            return res.status(200).json({status:true}); // retorno do token
         } catch (error: any) {
-            return res.status(404).json({"error": error.message});
+            return res.status(500).json({status:false, "message": error.message});
         }
       }   
      

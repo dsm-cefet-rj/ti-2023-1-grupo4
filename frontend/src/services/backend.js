@@ -1,3 +1,4 @@
+import api from './api';
 import {inicializaCarrinho} from './carrinho'
 
 export function StartUsersFn(){
@@ -31,7 +32,10 @@ export function StartUsersFn(){
 
 }
 
-export function LoginFn({email, password}){
+export async function LoginFn({email, password}){
+
+  const userData = await api.post('/signIn', {email, password})
+
   let users = localStorage.getItem("fast_byte_usuarios");
   if (!!users) {
     users = JSON.parse(users);

@@ -1,28 +1,35 @@
-const jwt = require('jsonwebtoken');
-import { Request, Response, NextFunction } from 'express';
+import jwt from 'jsonwebtoken';
+import { Response, NextFunction, Request } from 'express';
+import user from '../models/User';
 
-function auth(req: Request, res:Response, next: NextFunction){
-    let authHeader = req.headers.authorization;
-    if (!authHeader){
+
+export function Authenticate(req: Request, res:Response, next: NextFunction){
+    let token = req.cookies['fastbyte_token'];
+
+    if (!token){
         return res.status(401).json({"error": "Token não fornecido"});
     }
 
-    const parts = authHeader.split(" ");
-    if (parts.length !== 2){
-        return res.status(401).json({"error": "Token inválido"});
+    const payload = jwt.verify(token, process.env.JWT_KEY || '');
+
+    if (!payload){
+        return res.status(401).json({"error": "Token corrompido"});
     }
 
-    const [scheme, token] = parts;
-    if (scheme !== "Bearer"){
-        return res.status(401).json({"error": "Token mal formatado"});
-    }
+    req.cookies['fastbyte_token'] = payload;
 
-    jwt.verify(token, "c8fc19bb-6b35-43a9-8dba-0e11cfce2729", (error: any)=>{
-        if (error){
-          return res.status(401).json({"error": "Token inválido"});
-        }
-        return next(); // caso não entre em nenhuma das condições de erro, o token é válido
-    });
+    console.log("token:", payload);
+    next();
+
 }
 
-module.exports = auth;
+export function Authorizate () {
+    return async (req: Request, res:Response, next: NextFunction) => {
+        const token = req.cookies['fastbyte_token'];
+        const userObject = await user.findById(token?.UserInfo['id']);
+        if (!userObject?.admin){
+            return res.status(403).json({status:false, message:"Forbidden"});
+        }
+        next();
+    }
+}

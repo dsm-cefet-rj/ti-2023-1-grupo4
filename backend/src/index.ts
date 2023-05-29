@@ -1,12 +1,9 @@
-import express, { Application, Router, Request, Response } from 'express';
+import 'dotenv/config';
+
+import express, { Application } from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-import { readdirSync } from 'fs';
-import path from 'path';
-
-// Carrega as variáveis de ambiente do arquivo .env
-dotenv.config();
+import router from './routes';
 
 // Configuração do servidor
 const app: Application = express();
@@ -18,24 +15,7 @@ app.use(express.json());
 mongoose.connect(process.env.MONGO_URI || '').then(() => console.log('MongoDB Atlas connected'))
   .catch((err) => console.log(`MongoDB Atlas connection error: ${err}`));
 
-
-// Rotas
-const routesPath = path.join(__dirname, 'routes');
-
-// ler todos os arquivos na pasta Routes
-const routeFiles = readdirSync(routesPath);
-
-// criar uma instância do Router do express
-const router = Router();
-
-// adicionar todas as rotas presentes nos arquivos encontrados
-routeFiles.forEach((file) => {
-  const route = require(`./routes/${file}`).default;
-  router.use(route);
-});
-
-// adicionar o router ao app
-app.use(router);
+app.use(router)
 
 // Inicia o servidor
 const PORT = process.env.PORT || 5000;
