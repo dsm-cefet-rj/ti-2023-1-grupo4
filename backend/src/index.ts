@@ -7,7 +7,11 @@ import router from './routes';
 
 // Configuração do servidor
 const app: Application = express();
-app.use(cors());
+app.use(cors({
+  origin:'http://localhost:3000',
+  credentials:true
+}));
+
 app.use(express.json());
 
 // Conexão com o banco de dados

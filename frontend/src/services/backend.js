@@ -33,41 +33,12 @@ export function StartUsersFn(){
 }
 
 export async function LoginFn({email, password}){
-
-  const userData = await api.post('/signIn', {email, password})
-
-  let users = localStorage.getItem("fast_byte_usuarios");
-  if (!!users) {
-    users = JSON.parse(users);
-  } else {
-    return {status:false,message:"Email ou senha incorretos."};
+  try{
+    const userData = await api.post('/signIn', {email, password});
+    return userData;
+  }catch(e){
+    return e.response.data;
   }
-
-  let hasUser = users["usuarios"].find((v) => {
-    return v.email === email && v.password === password;
-  });
-
-  if (!!hasUser) {
-    sessionStorage.setItem(
-      "fast_byte_token",
-      JSON.stringify({
-        email: hasUser.email,
-        tipo: hasUser.tipo,
-        userName: hasUser.userName,
-        endereco:hasUser.endereco || null
-      })
-    );
-    
-    return {status:true, token:JSON.stringify({
-      email: hasUser.email,
-      tipo: hasUser.tipo,
-      userName: hasUser.userName,
-      endereco:hasUser.endereco || null
-     })};
-  } else {
-    return {status:false,message:"Email ou senha incorretos."};
-  }
-
 }
 
 export function StartRegisterFn({email, password, userName, confirmPassword}){

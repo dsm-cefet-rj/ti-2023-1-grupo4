@@ -15,17 +15,14 @@ class LoginService {
             throw new Error("Erro: um dos dados inseridos está incorreto.");
         }
         
-        const token = jwt.sign({
+        const token = {
             UserInfo:{
                 name:user.username,
                 email:user.email,
-                id: user.id
+                id: user.id,
+                admin:user.admin
             }
-        },
-        process.env.JWT_KEY || '',
-        {
-            expiresIn:'48h'
-        });
+        }
         
         return token;
     }

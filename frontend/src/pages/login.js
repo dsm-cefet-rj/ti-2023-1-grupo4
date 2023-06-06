@@ -2,7 +2,7 @@ import "../styles/login.scss";
 import Button from "../components/Botao/button";
 import logo from "../assets/images/logo.png";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 import { inicializaCarrinho } from "../services/carrinho";
 import { LoginFn } from "../services/backend";
 import { useRecoilState } from "recoil";
@@ -25,12 +25,16 @@ export default function Login() {
 
     const data = await LoginFn({email, password});
     if(data.status){
-      inicializaCarrinho();
-      if(email === 'admin@fastbyte.com'){
-        window.location.href = "/dashboard";
+      const token = JSON.stringify(data.data.data);
+      sessionStorage.setItem('fastbyte_token', token);
+
+      if(data.data.data['UserInfo'].admin){
+        window.location.href = '/dashboard';
       }else{
-        window.location.href = "/cardapio";
+        window.location.href = '/cardapio';
       }
+
+      inicializaCarrinho();
     }else{
       alert(data.message);
     }
