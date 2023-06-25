@@ -9,7 +9,8 @@ import { CadastroAtom } from "../states/cadastro";
 import { useEffect } from "react";
 import { inicializaCarrinho } from "../services/carrinho";
 import { BufferComponent } from "../components/Auth";
-
+import { FinishRegisterFn } from "../services/backend";
+import api from "../services/api";
 
 export default function Endereco() {
   const [enderecoForm, setEnderecoForm] = useRecoilState(EnderecoAtom);
@@ -25,7 +26,8 @@ export default function Endereco() {
     setEnderecoForm(tempForm);
   }
 
-  function onSubmitEndereco() {
+  async function onSubmitEndereco() {
+
     let initialValue = true;
     initialValue = !Object.values(enderecoForm).reduce(
         (accumulator, currentValue) => !!accumulator && !!currentValue,
@@ -36,63 +38,32 @@ export default function Endereco() {
       return;
     }
 
-    let users = localStorage.getItem("fast_byte_usuarios");
-    if (!!users) {
-      users = JSON.parse(users);
-      users["usuarios"].push({
-        email: cadastroForm.email,
-        password: cadastroForm.password,
-        userName: cadastroForm.userName,
-        tipo: "usuario",
-        endereco: enderecoForm,
+    const {
+      email,
+      password,
+      userName
+    } = cadastroForm;
+    console.log(cadastroForm);
+    try{
+      const {data} = await api.post("/users", {
+        email,
+        password,
+        username:userName,
+        cep:enderecoForm.cep,
+        rua:enderecoForm.logradouro,
+        bairro:enderecoForm.bairro,
+        numero:enderecoForm.numero,
+        complemento:enderecoForm.complemento,
+        cidade:enderecoForm.cidade,
+        estado:enderecoForm.uf
       });
-
-      localStorage.setItem(
-        "fast_byte_usuarios",
-        JSON.stringify(users)
-      );
-
-      sessionStorage.setItem(
-        "fast_byte_token",
-        JSON.stringify({
-          email: cadastroForm.email,
-          userName: cadastroForm.userName,
-          tipo: "usuario",
-        })
-      );
-      
-      inicializaCarrinho();
-    } else {
-      localStorage.setItem(
-        "fast_byte_usuarios",
-        JSON.stringify({
-          usuarios: [
-            {
-              email: cadastroForm.email,
-              password: cadastroForm.password,
-              userName: cadastroForm.userName,
-              tipo: "usuario",
-              endereco: enderecoForm,
-            },
-          ],
-        })
-      );
-      inicilizaCarrinho();
-
-
-      sessionStorage.setItem(
-        "fast_byte_token",
-        JSON.stringify({
-          email: cadastroForm.email,
-          userName: cadastroForm.userName,
-          tipo: "usuario",
-        })
-      );
+  
+      sessionStorage.removeItem("cadastroBuffer");
+      window.location.href = "/login";
+    }catch(e){
+      alert(e.message);
     }
-
-    sessionStorage.removeItem("cadastroBuffer");
-
-    window.location.href = "/cardapio";
+    
   }
 
   function onBlurCep(ev) {

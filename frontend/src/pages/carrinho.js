@@ -49,7 +49,7 @@ export default function Carrinho() {
     } else if (!paymentOption) {
       alert("Por favor, escolha uma forma de pagamento.");
     } else {
-      addPedido({carrinho, payment:paymentOption, endereco:JSON.parse(sessionStorage.getItem('fast_byte_token'))['endereco'], email:JSON.parse(sessionStorage.getItem('fast_byte_token'))['userName']})
+      addPedido({carrinho, payment:paymentOption, endereco:JSON.parse(sessionStorage.getItem('fastbyte_token'))['endereco'], email:JSON.parse(sessionStorage.getItem('fastbyte_token'))['userName']})
       inicializaCarrinho();
       setCarrinha([]);
       alert("Pedido confirmado!");

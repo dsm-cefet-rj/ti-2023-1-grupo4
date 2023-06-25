@@ -15,10 +15,6 @@ import { StartUsersFn } from "./services/backend";
 
 export default function AppRouter() {
 
-  useEffect(() => {
-    StartUsersFn();
-  }, [])
-
   return (
     <Router>
       <Routes>

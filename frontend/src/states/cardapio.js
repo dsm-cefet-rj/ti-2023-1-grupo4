@@ -7,7 +7,7 @@ export const itemSelecionadoAtom = atom({
 
 export const CombosAtom = atom({
   key: "cardapioCombo",
-  default: import("../data/combos.json"),
+  default: {tipo:"Combos", list:[]},
 });
 
 export const BebidasAtom = atom({

@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import { Link } from "react-router-dom";
 import { CadastroAtom } from "../states/cadastro";
-import { StartRegisterFn } from "../services/backend";
+import api from "../services/api";
 
 export default function Cadastro() {
   const [cadastroForm, setCadastroForm] = useRecoilState(CadastroAtom);
@@ -16,17 +16,55 @@ export default function Cadastro() {
     setCadastroForm(tempForm);
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
-    const data = StartRegisterFn(cadastroForm);
+    let {
+      email,
+      password,
+      userName,
+      confirmPassword
+    } = cadastroForm;
+    let data;
+    try{
+      if (
+        !email ||
+        !password ||
+        !userName ||
+        !confirmPassword
+      ) {
+        return {status:false, message:"Por favor, preencha os campos obrigatórios"};
+      } else {
+        if (password !== confirmPassword) {
+          return {status:false, message:"As senhas não conferem!"};
+        }
+        const d = await api.get('/users');
+        data = d.data;
+        let user = data.filter(v => v.email === email);
+        if(user.length > 0){
+          return {
+            status:false,
+            message:"Email ja cadastrado"
+          }
+        }
+        sessionStorage.setItem("cadastroBuffer", JSON.stringify({
+          email,
+          password,
+          userName
+        }));
+      }
+      if(!data.length){
+        alert(data.message);
+        return;
+      }else{
+        sessionStorage.setItem("cadastroBuffer", JSON.stringify(cadastroForm));
+        window.location.href = "/endereco";
+      }
 
-    if(!data.status){
-      alert(data.message);
+    }catch(e){
+      console.log(e);
+      alert(e.message);
       return;
-    }else{
-      sessionStorage.setItem("cadastroBuffer", JSON.stringify(cadastroForm));
-      window.location.href = "/endereco";
     }
   }
 

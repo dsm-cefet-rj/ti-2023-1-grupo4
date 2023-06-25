@@ -17,8 +17,6 @@ export function Authenticate(req: Request, res:Response, next: NextFunction){
     }
 
     req.cookies['fastbyte_token'] = payload;
-
-    console.log("token:", payload);
     next();
 
 }

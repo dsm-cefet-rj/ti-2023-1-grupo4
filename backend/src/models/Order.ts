@@ -9,7 +9,7 @@ export enum EPedidoStatus {
 
 interface IOrder extends Document {
   user: Schema.Types.ObjectId;
-  delivery: Schema.Types.ObjectId;
+  delivery: Object;
   itens: Array<{ item: Schema.Types.ObjectId; quantity: number }>;
   paid?: boolean;
   status?: String;
@@ -17,7 +17,7 @@ interface IOrder extends Document {
 
 const orderSchema = new Schema<IOrder>({
   user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-  delivery: { type: Schema.Types.ObjectId, ref: 'Delivery', required: true },
+  delivery: { type: Object, required: true },
   itens: [
     {
       item: { type: Schema.Types.ObjectId, ref: 'Item', required: true },

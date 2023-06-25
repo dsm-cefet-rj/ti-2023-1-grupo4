@@ -1,10 +1,9 @@
 import { useEffect } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
 
 export default function AuthComponent ({redirect}) {
 
   useEffect(() => {
-    const isAuth = !!sessionStorage.getItem('fast_byte_token') || null
+    const isAuth = !!sessionStorage.getItem('fastbyte_token') || null
     if(!isAuth){
       window.location.href = redirect;
     }

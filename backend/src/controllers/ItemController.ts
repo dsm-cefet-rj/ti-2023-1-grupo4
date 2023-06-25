@@ -5,9 +5,9 @@ import Multer from 'multer';
 class ItemController {
   public async create(req: Request, res: Response): Promise<Response> {
     try {
-      const { name, price, quantity } = req.body;
+      const { name, price, quantity, tipo,  } = req.body;
       const file = req.file?.buffer || null;
-      const item = new Item({ name, price, quantity, file });
+      const item = new Item({ name, price, quantity, file, type:tipo, itens:tipo === 'combo' ? req.body.itens : null });
       const newItem = await item.save();
       return res.status(201).json(newItem);
     } catch (error) {

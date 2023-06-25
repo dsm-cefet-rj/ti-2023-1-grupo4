@@ -8,7 +8,7 @@ import { Authenticate } from "@app/middleware/Auth";
 const router: Router = Router();
 router.use('/signIn', login);
 router.use('/delivery', deliveryRouter);
-router.use('/item', Authenticate, itemRouter);
+router.use('/item', itemRouter);
 router.use('/users', user);
 
 export default router;

@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { Authenticate } from '@app/middleware/Auth';
-const UserController = require("../controllers/UserController.ts")
+import UserController from "../controllers/UserController";
 
 const user = Router();
 

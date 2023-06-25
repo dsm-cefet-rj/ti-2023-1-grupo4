@@ -25,7 +25,8 @@ export default function Login() {
 
     const data = await LoginFn({email, password});
     if(data.status){
-      const token = JSON.stringify(data.data.data);
+      console.log(data.data.data);
+      const token = JSON.stringify(data.data.data['UserInfo']);
       sessionStorage.setItem('fastbyte_token', token);
 
       if(data.data.data['UserInfo'].admin){

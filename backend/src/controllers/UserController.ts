@@ -1,18 +1,15 @@
-import { Request, Response } from 'express';
+import { Request, Response } from 'express'; 
 import User from '../models/User';
 import { HashPass } from '@app/utils/secure';
-const jwt = require('jsonwebtoken');
-
-const bcrypt = require ("bcrypt")
+import jwt from 'jsonwebtoken';
+import bcrypt from "bcryptjs";
 
 class UserController {
 
     static async createUser (req: Request, res: Response) {
         try {
-          const { username, email, password } = req.body;
-          const hash = HashPass(password);
-
-          const user = new User({ username, email, password: hash });
+          req.body.password = HashPass(req.body.password);
+          const user = new User(req.body);
           await user.save();
           res.json(user);
         } catch (err: any) {
@@ -54,7 +51,8 @@ class UserController {
           }
           const parts = authHeader.split(" ")
           const [scheme, token] = parts;
-          const {id} = jwt.decode(token)
+          const tk = jwt.decode(token) as any;
+          const id = tk['id'];
 
           //Comparando o Id recebido com o Id do token
           if(id !== req.params.id){
@@ -82,7 +80,8 @@ class UserController {
           }
           const parts = authHeader.split(" ")
           const [scheme, token] = parts;
-          const {id} = jwt.decode(token)
+          const tk = jwt.decode(token) as any;
+          const id = tk['id'];
 
           //Comparando o Id recebido com o Id do token
           if(id !== req.params.id){
@@ -108,4 +107,4 @@ class UserController {
         }
       }
 }
-module.exports = UserController;
+export default UserController;

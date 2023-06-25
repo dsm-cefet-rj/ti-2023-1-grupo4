@@ -13,14 +13,39 @@ import Modal from "react-modal";
 import { setItensCarrinho } from '../services/carrinho';
 import { CarrinhoAtom } from '../states/carrinho';
 import AuthComponent from '../components/Auth';
+import api from '../services/api';
 
 
 export default function Cardapio(){
 
     const [item] = useRecoilState(itemSelecionadoAtom);
-    const [comboBox] = useRecoilState(CombosAtom)
-    const [bebidasBox] = useRecoilState(BebidasAtom)
-    const [sobremesasBox] = useRecoilState(SobremesasAtom)
+    const [comboBox, setCombo] = useRecoilState(CombosAtom);
+    const [bebidasBox, setBebidas] = useRecoilState(BebidasAtom);
+    const [sobremesasBox, setSobremesas] = useRecoilState(SobremesasAtom);
+
+    async function LoadResources () {
+        const itens = await api.get('/item');
+        const splitItens = itens.data.reduce((prev, v) => {
+            if(v.type) prev[v.type].push({
+                nome:v.name,
+                itens:v.itens,
+                preco:'R$ '+ String(v?.price).replace(/\./g, ','),
+                tipo:v.type
+            });
+            return prev;
+        }, {combo:[], bebida:[], sobremesa:[]});
+
+        console.log(splitItens)
+
+        setCombo({tipo:"Combos", list:splitItens.combo});
+        setBebidas({tipo:"Bebidas", list:splitItens.bebida});
+        setSobremesas({tipo:"Sobremesas", list:splitItens.sobremesa});
+
+    }
+
+    useEffect(() => {
+        LoadResources ();
+    }, []);
     
     return(
         <div className='cardapioPrincipal'>

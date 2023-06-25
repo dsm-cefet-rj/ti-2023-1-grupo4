@@ -37,11 +37,7 @@ export default function dashboard() {
     }
   ];
 
-  const [pedidos, setPedidos] = useState(GetPedidos());
-
-  useEffect(() => {
-    localStorage.setItem('fastbyte-pedidos' ,JSON.stringify({pedidos}))
-  }, [pedidos])
+  const [pedidos, setPedidos] = useState([]);
 
   function DescFN(item) {
     return JSON.stringify(item.carrinho.map(v => v.nome)).replace(/(\[)|(\])|(\")|(\')/g, '');

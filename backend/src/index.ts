@@ -4,6 +4,7 @@ import express, { Application } from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import router from './routes';
+import cookieParser from 'cookie-parser';
 
 // Configuração do servidor
 const app: Application = express();
@@ -12,6 +13,7 @@ app.use(cors({
   credentials:true
 }));
 
+app.use(cookieParser(process.env.JWT_KEY));
 app.use(express.json());
 
 // Conexão com o banco de dados

@@ -10,7 +10,7 @@ import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 export default function Cabecalho() {
 
   function logoffFn() {
-    sessionStorage.removeItem('fast_byte_token');
+    sessionStorage.removeItem('fastbyte_token');
     window.location.href = '/'
   }
 

@@ -46,7 +46,6 @@ function Item(props) {
         <li>
           <a>
             <h2>{props.nome}</h2>
-            <p className="item-text-content">{props.descricao}</p>
             <p className="item-text-content">{props.preco}</p>
           </a>
         </li>

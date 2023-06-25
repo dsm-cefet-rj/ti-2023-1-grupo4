@@ -20,7 +20,16 @@ class LoginService {
                 name:user.username,
                 email:user.email,
                 id: user.id,
-                admin:user.admin
+                admin:user.admin,
+                endereco:{
+                    cep:user.cep || null,
+                    logradouro:user.rua || null,
+                    bairro:user.bairro || null,
+                    numero:user.numero || null,
+                    complemento:user.complemento || null,
+                    cidade:user.cidade || null,
+                    uf:user.estado || null
+                }
             }
         }
         

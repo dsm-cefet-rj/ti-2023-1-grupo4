@@ -9,7 +9,7 @@ export default function perfil() {
 
   const [form, setForm] = useState({});
 
-  const [token, setToken] = useState(JSON.parse(sessionStorage.getItem('fast_byte_token')))
+  const [token, setToken] = useState(JSON.parse(sessionStorage.getItem('fastbyte_token')))
 
   return (
     <div>
